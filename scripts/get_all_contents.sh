@@ -23,7 +23,13 @@ function usage() {
   Description:
     This is metrics checker script for RTM contest 2016.
   Options:
-    -h       : Print usage
+    -h, --help       : Print usage
+  Note:
+    This script needs following packages
+      - git
+      - wget
+      - sloccount
+      - cppcheck
 EOF
   return 1
 }
@@ -33,6 +39,23 @@ function cleanup_project()
 {
   rm -rf $1
   mkdir -p $1/src $1/doc $1/util
+}
+
+function check_commands()
+{
+  if ! type git > /dev/null 2>&1; then
+    echo "please install git !"
+    exit 1
+  elif ! type wget > /dev/null 2>&1; then
+    echo "please install wget !"
+    exit 1
+  elif ! type sloccount > /dev/null 2>&1; then
+    echo "please install sloccount !"
+    exit 1
+  elif ! type cppcheck > /dev/null 2>&1; then
+    echo "please install cppcheck !"
+    exit 1
+  fi
 }
 
 function get_project_title()
@@ -316,7 +339,6 @@ function get_project_13()
   # get utility tools
 }
 
-# main routine
 
 ################
 # MAIN ROUTINE #
@@ -337,6 +359,8 @@ do
   esac
   shift
 done
+
+check_commands
 
 for i in `seq -w $num_of_entry`
 do
