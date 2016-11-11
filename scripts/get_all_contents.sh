@@ -149,6 +149,7 @@ function _git_clone()
 {
   # shallow clone
   git clone --depth 1 $1 $2/`basename $1`
+  rm -rf $2/`basename $1`/.git
 
   return $?
 }
@@ -230,9 +231,10 @@ function get_project_03()
 
   # get source code
   _git_clone https://github.com/sako35/SoundDirectionRTC2 $project_src
+  mv $project_src/* $project_src/
 
   # get documents
-  mv $project_src/*/*.pdf $project_doc/
+  mv $project_src/*.pdf $project_doc/
 
   # get utility tools
 
@@ -248,9 +250,10 @@ function get_project_04()
 
   # get source code
   _git_clone https://github.com/Sakakibara-Hiroyuki/openRTM2016_04 $project_src
+  mv $project_src/openRTM2016_04/* $project_src/
 
   # get documents
-  mv $project_src/*/*.pdf $project_doc/
+  mv $project_src/*.pdf $project_doc/
 
   # get utility tools
 
@@ -266,6 +269,7 @@ function get_project_05()
 
   # get source code
   _git_clone https://github.com/MatsudaR/RaspberryPi-Arduino-Duo-RTC $project_src
+  mv $project_src/RaspberryPi-Arduino-Duo-RTC/* $project_src/
 
   # get documents
   # get utility tools
@@ -393,10 +397,11 @@ function get_project_13()
   local project_util=$project/util
 
   # get source code
-  _git_clone https://github.com/mediart-C/Magicalight.git $project_src
+  _git_clone https://github.com/mediart-C/Magicalight $project_src
+  mv $project_src/Magicalight/* $project_src/
 
   # get documents
-  mv $project_src/*/*.pdf $project_doc/
+  mv $project_src/*.pdf $project_doc/
 
   # get utility tools
 
