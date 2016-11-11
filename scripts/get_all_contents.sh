@@ -9,6 +9,7 @@ set -u
 ####################
 # readonly XXX="xxx"
 readonly num_of_entry=13
+readonly required_packages=(git wget sloccount cppcheck egrep pyflakes findbugs)
 
 ####################
 # GLOBAL VARIABLES #
@@ -19,19 +20,20 @@ readonly num_of_entry=13
 function usage() {
   cat <<EOF
   Usage:
-    $0
+    ./`basename $0`
+
   Description:
     This is metrics checker script for RTM contest 2016.
+
   Options:
     -h, --help       : Print usage
+
   Note:
     This script needs following packages
-      - git
-      - wget
-      - sloccount
-      - cppcheck
+    `echo "- ${required_packages[@]}"`
+
 EOF
-  return 1
+  return 0
 }
 
 # cleanup
@@ -39,35 +41,40 @@ function cleanup_project()
 {
   rm -rf $1
   mkdir -p $1/src $1/doc $1/util
+
+  return 0
 }
 
 function check_commands()
 {
-  if ! type git > /dev/null 2>&1; then
-    echo "please install git !"
-    exit 1
-  elif ! type wget > /dev/null 2>&1; then
-    echo "please install wget !"
-    exit 1
-  elif ! type sloccount > /dev/null 2>&1; then
-    echo "please install sloccount !"
-    exit 1
-  elif ! type cppcheck > /dev/null 2>&1; then
-    echo "please install cppcheck !"
-    exit 1
-  fi
+  for p in "${required_packages[@]}"
+  do
+    if ! type "${p}" > /dev/null 2>&1; then
+      echo "please install ${p} !"
+      echo "---"
+      usage
+      exit 1
+    fi
+  done
+
+  return 0
 }
 
+# get project title from HTML of project page
 function get_project_title()
 {
   local base_url=http://www.openrtm.org/openrtm/ja/project/contest2016
   echo ${base_url}_$1 > $1/url.txt
   wget ${base_url}_$1 -O - | egrep "<title>.*</title>" | sed -e "s/<[^>]*>//g" | sed -e "s/ //g" > $1/title.txt
+
+  return 0
 }
 
-function get_project_rtc_number()
+function get_project_rtcs()
 {
-  find $1 -name "*.py" -o -name "*.cpp" -o -name "*.java" | xargs grep -i "MyModuleInit(" | wc -l > $1/rtc_num.txt
+  find $1 -name "*.py" -o -name "*.cpp" -o -name "*.java" | xargs grep -l -i "MyModuleInit(" | sed 's/.*\///' > $1/rtc.txt
+
+  return $?
 }
 
 function generate_project_summary()
@@ -77,43 +84,73 @@ function generate_project_summary()
 Entry No.  : $1/
 Title      : `cat $1/title.txt`
 URL        : `cat $1/url.txt`
-# of RTC   : `cat $1/rtc_num.txt`
+RTCs       : `cat $1/rtc.txt | wc -l`
+`cat $1/rtc.txt | sed 's/^/  - /'`
+
 Step(all)  :
-`cat $1/stepcount_all.txt`
+`cat $1/stepcount_all.txt | sed 's/^/  - /'`
 
 Step(RTC)  :
-`cat $1/stepcount_rtc.txt`
+`cat $1/stepcount_rtc.txt | sed 's/^/  - /'`
 
-Errors     :
-`cat $1/errors.txt`
+Errors     : `cat $1/errors.txt | wc -l`
+`cat $1/errors.txt | sed 's/^/  - /'`
+
+Warnings   : `cat $1/warnings.txt | wc -l`
+  please check $1/warnings.txt
 
 -----------------------------
 EOS
+
+  return 0
 }
 
 function analyse_project()
 {
   get_project_title $1
 
+  touch $1/errors.txt
+  touch $1/warnings.txt
+  touch $1/rtc.txt
+  touch $1/stepcount_all.txt
+  touch $1/stepcount_rtc.txt
+
   if [ ! -z "$(ls -A $1/src)" ]
   then
-    get_project_rtc_number $1
+    get_project_rtcs $1
 
-    sloccount --duplicates --wide $1 > $1/sloccount.txt
-    egrep "%" $1/sloccount.txt > $1/stepcount_all.txt
-    egrep -v "%" $1/sloccount.txt | egrep "cpp|java|python|xml|sh|%" > $1/stepcount_rtc.txt
+    sloccount --duplicates --wide $1 > $1/sloccount_all.txt
+    sloccount --duplicates --wide $1/src > $1/sloccount_rtc.txt
+    egrep "%" $1/sloccount_all.txt >> $1/stepcount_all.txt
+    egrep -v "%" $1/sloccount_rtc.txt | egrep "cpp|java|python|xml|sh|%" >> $1/stepcount_rtc.txt
 
+    # static analysis for C/C++
     cppcheck --enable=all $1/src 2> $1/cppcheck.txt
-    egrep "error" $1/cppcheck.txt > $1/errors.txt
+    egrep "error" $1/cppcheck.txt >> $1/errors.txt
+    egrep -v "information|error" $1/cppcheck.txt >> $1/warnings.txt
+
+    # static analysis for Python
+    find $1/src -name "*.py" | xargs pyflakes > $1/pyflakes.txt
+    cat $1/pyflakes.txt | egrep -v -e '^\s*$' >> $1/warnings.txt
+
+    # static analysis for Java
+    findbugs -textui -quiet -emacs $1/src > $1/findbugs.txt
+    cat $1/findbugs.txt | egrep -v -e '^\s*$' >> $1/warnings.txt
+
   fi
 
   generate_project_summary $1 > $1/summary.txt
+
+  return 0
 }
 
 # wrapper of git clone
 function _git_clone()
 {
-  git clone $1 $2/`basename $1`
+  # shallow clone
+  git clone --depth 1 $1 $2/`basename $1`
+
+  return $?
 }
 
 # wrapper of wget
@@ -121,6 +158,7 @@ function _wget()
 {
   wget $1 -P $2/
 
+  return $?
 }
 
 
@@ -145,6 +183,8 @@ function get_project_01()
 
   # get utility tools
   _git_clone https://github.com/Nobu19800/Four_legged_Robot_Scripts $project_util
+
+  return 0
 }
 
 function get_project_02()
@@ -177,6 +217,8 @@ function get_project_02()
   _git_clone https://github.com/Nobu19800/EducatorVehicle_script $project_util
   _git_clone https://github.com/Nobu19800/EducatorVehicle_script_ev3dev $project_util
   _git_clone https://github.com/Nobu19800/saveBinaryImage $project_util
+
+  return 0
 }
 
 function get_project_03()
@@ -193,6 +235,8 @@ function get_project_03()
   mv $project_src/*/*.pdf $project_doc/
 
   # get utility tools
+
+  return 0
 }
 
 function get_project_04()
@@ -209,6 +253,8 @@ function get_project_04()
   mv $project_src/*/*.pdf $project_doc/
 
   # get utility tools
+
+  return 1
 }
 
 function get_project_05()
@@ -223,6 +269,8 @@ function get_project_05()
 
   # get documents
   # get utility tools
+
+  return 0
 }
 
 function get_project_06()
@@ -243,6 +291,8 @@ function get_project_06()
   _wget http://www.sic.shibaura-it.ac.jp/~md16005/Ikeda/contest2016_06manual.pdf $project_doc
 
   # get utility tools
+
+  return 0
 }
 
 function get_project_07()
@@ -255,6 +305,8 @@ function get_project_07()
   # get source code
   # get documents
   # get utility tools
+
+  return 0
 }
 
 function get_project_08()
@@ -267,6 +319,8 @@ function get_project_08()
   # get source code
   # get documents
   # get utility tools
+
+  return 0
 }
 
 function get_project_09()
@@ -279,6 +333,8 @@ function get_project_09()
   # get source code
   # get documents
   # get utility tools
+
+  return 0
 }
 
 function get_project_10()
@@ -291,6 +347,8 @@ function get_project_10()
   # get source code
   # get documents
   # get utility tools
+
+  return 0
 }
 
 function get_project_11()
@@ -309,6 +367,8 @@ function get_project_11()
   _wget http://www.sic.shibaura-it.ac.jp/~md16042/Shimoyama2016/contest2016_manual.pdf $project_doc
 
   # get utility tools
+
+  return 0
 }
 
 function get_project_12()
@@ -321,6 +381,8 @@ function get_project_12()
   # get source code
   # get documents
   # get utility tools
+
+  return 0
 }
 
 function get_project_13()
@@ -337,6 +399,8 @@ function get_project_13()
   mv $project_src/*/*.pdf $project_doc/
 
   # get utility tools
+
+  return 0
 }
 
 
@@ -364,13 +428,19 @@ check_commands
 
 for i in `seq -w $num_of_entry`
 do
+  echo ""
   echo "--> Start PROJECT_$i"
+  echo ""
   cleanup_project $i
   get_project_$i
   analyse_project $i
 done
 
 cat */summary.txt > summary_`date +%Y%m%d`.txt
+
+echo ""
+echo "Completed $i projects"
+echo ""
 
 exit 0
 
