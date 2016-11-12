@@ -307,8 +307,15 @@ function get_project_07()
   local project_util=$project/util
 
   # get source code
+  _git_clone https://github.com/rsdlab/CRANE-simulation $project_src
+  mv $project_src/CRANE-simulation/* $project_src/
+
   # get documents
+  mv $project_src/*.pdf $project_doc/
+
   # get utility tools
+  mv $project_src/choreonoid_CRANE+ $project_util/
+  mv $project_src/script $project_util/
 
   return 0
 }
