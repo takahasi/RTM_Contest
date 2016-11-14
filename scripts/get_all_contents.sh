@@ -49,7 +49,7 @@ function check_commands()
 {
   for p in "${required_packages[@]}"
   do
-    if ! type "${p}" > /dev/null 2>&1; then
+    if [ ! type "${p}" > /dev/null 2>&1 ]; then
       echo "please install ${p} !"
       echo "---"
       usage
@@ -72,7 +72,7 @@ function get_project_title()
 
 function get_project_rtcs()
 {
-  find $1 -name "*.py" -o -name "*.cpp" -o -name "*.java" | xargs grep -l -i "MyModuleInit(" | sed 's/.*\///' > $1/rtc.txt
+  find $1 \( -name "*.py" -o -name "*.cpp" -o -name "*.java" \) -print0 | xargs -0 grep -l -i "MyModuleInit(" | sed 's/.*\///' > $1/rtc.txt
 
   return $?
 }
@@ -115,8 +115,7 @@ function analyse_project()
   touch $1/stepcount_all.txt
   touch $1/stepcount_rtc.txt
 
-  if [ ! -z "$(ls -A $1/src)" ]
-  then
+  if [ ! -z "$(ls -A $1/src)" ]; then
     get_project_rtcs $1
 
     sloccount --duplicates --wide $1 > $1/sloccount_all.txt
@@ -127,15 +126,18 @@ function analyse_project()
     # static analysis for C/C++
     cppcheck --enable=all $1/src 2> $1/cppcheck.txt
     egrep "error" $1/cppcheck.txt >> $1/errors.txt
-    egrep -v "information|error" $1/cppcheck.txt >> $1/warnings.txt
 
     # static analysis for Python
-    find $1/src -name "*.py" | xargs pyflakes > $1/pyflakes.txt
-    cat $1/pyflakes.txt | egrep -v -e '^\s*$' >> $1/warnings.txt
+    find $1/src \( -name "*.py" \) -print0 | xargs -0 pyflakes > $1/pyflakes.txt
 
     # static analysis for Java
     findbugs -textui -quiet -emacs $1/src > $1/findbugs.txt
-    cat $1/findbugs.txt | egrep -v -e '^\s*$' >> $1/warnings.txt
+
+    {
+      egrep -v "information|error" $1/cppcheck.txt
+      cat $1/pyflakes.txt | egrep -v -e '^\s*$'
+      cat $1/findbugs.txt | egrep -v -e '^\s*$'
+    } > $1/warnings.txt
 
   fi
 
@@ -390,8 +392,17 @@ function get_project_12()
   local project_util=$project/util
 
   # get source code
+  _wget http://www.openrtm.org/openrtm/sites/default/files/6133/StarTno_2016.zip $project_src/
+  unzip $project_src/StarTno_2016.zip -d $project_src/
+  mv $project_src/StarTno_2016/* $project_src/
+  mv $project_src/00_StarTno_00_Win7_VsualStudio2013/* $project_src/
+
+
   # get documents
+  find  $project_src \( -name "*.pdf" -o -name "*.doc*" \) -print0 | xargs -0 -i mv {} $project_doc/
+
   # get utility tools
+  mv $project_src/00_*RTno* $project_util/
 
   return 0
 }
