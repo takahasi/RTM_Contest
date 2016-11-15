@@ -125,7 +125,6 @@ function analyse_project()
 
     # static analysis for C/C++
     cppcheck --enable=all $1/src 2> $1/cppcheck.txt
-    egrep "error" $1/cppcheck.txt >> $1/errors.txt
 
     # static analysis for Python
     find $1/src \( -name "*.py" \) -print0 | xargs -0 pyflakes > $1/pyflakes.txt
@@ -133,10 +132,17 @@ function analyse_project()
     # static analysis for Java
     findbugs -textui -quiet -emacs $1/src > $1/findbugs.txt
 
+    # collects errors
+    {
+      egrep "error" $1/cppcheck.txt
+      cat $1/findbugs.txt | egrep -v -e '^\s*$' | egrep "\(H\)"
+    } > $1/errors.txt
+
+    # collects warnings
     {
       egrep -v "information|error" $1/cppcheck.txt
       cat $1/pyflakes.txt | egrep -v -e '^\s*$'
-      cat $1/findbugs.txt | egrep -v -e '^\s*$'
+      cat $1/findbugs.txt | egrep -v -e '^\s*$' | egrep -v "\(H\)"
     } > $1/warnings.txt
 
   fi
@@ -316,7 +322,7 @@ function get_project_07()
   mv $project_src/*.pdf $project_doc/
 
   # get utility tools
-  mv $project_src/choreonoid_CRANE+ $project_util/
+  mv $project_src/model_project $project_util/
   mv $project_src/script $project_util/
 
   return 0
