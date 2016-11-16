@@ -36,7 +36,7 @@ EOF
   return 0
 }
 
-# cleanup
+# cleanup & create empty folfer
 function cleanup_project()
 {
   rm -rf $1
@@ -45,6 +45,7 @@ function cleanup_project()
   return 0
 }
 
+# check necessary commands
 function check_commands()
 {
   for p in "${required_packages[@]}"
@@ -63,9 +64,11 @@ function check_commands()
 # get project title from HTML of project page
 function get_project_title()
 {
-  local base_url=http://www.openrtm.org/openrtm/ja/project/contest2016
-  echo ${base_url}_$1 > $1/url.txt
-  wget ${base_url}_$1 -O - | egrep "<title>.*</title>" | sed -e "s/<[^>]*>//g" | sed -e "s/ //g" > $1/title.txt
+  if [ -d $1 ]; then
+    local base_url=http://www.openrtm.org/openrtm/ja/project/contest2016
+    echo ${base_url}_$1 > $1/url.txt
+    wget ${base_url}_$1 -O - | egrep "<title>.*</title>" | sed -e "s/<[^>]*>//g" | sed -e "s/ //g" > $1/title.txt
+  fi
 
   return 0
 }
@@ -73,16 +76,117 @@ function get_project_title()
 # get number of RTC by counting keyword of source code
 function get_project_rtcs()
 {
-  find $1 \( -name "*.py" -o -name "*.cpp" -o -name "*.java" \) -print0 | xargs -0 grep -l -i "MyModuleInit(" | sed 's/.*\///' > $1/rtc.txt
+  if [ -d $1 ]; then
+    find $1 \( -name "*.py" -o -name "*.cpp" -o -name "*.java" \) -print0 | xargs -0 grep -l -i "MyModuleInit(" | sed 's/.*\///' > $1/rtc.txt
+  fi
 
   return $?
 }
 
+# get project licence
 function get_project_licenses()
 {
-  egrep License $1 -r -l | sed -e 's/[0-9]*$//g' | egrep -v "cpack_resources|cmake\/License.rtf|.*\.in" | uniq | sed -e 's/$1//g'
+  if [ -d $1 ]; then
+    egrep License $1 -r -l | sed -e 's/[0-9]*$//g' | egrep -v "cpack_resources|cmake\/License.rtf|.*\.in" | uniq | sed -e 's/$1//g'
+  fi
+
+  return 0
 }
 
+# count step of whole source code
+function count_source_code_all()
+{
+  if [ -d $1 ]; then
+    sloccount --duplicates --wide $1 > $1/sloccount_all.txt
+    egrep "%" $1/sloccount_all.txt
+  fi
+
+  return 0
+}
+
+# count step of RTC source code
+function count_source_code_rtcs()
+{
+  if [ -d $1 ]; then
+    sloccount --duplicates --wide $1/src > $1/sloccount_rtc.txt
+    egrep -v "%" $1/sloccount_rtc.txt | egrep "cpp=|java=|python=|xml=|sh=|%"
+  fi
+
+  return 0
+}
+
+
+# analyze project
+function analyse_project()
+{
+  if [ ! -d $1 ]; then
+      return 1
+  fi
+
+  get_project_title $1
+
+  # create empty files for output
+  touch $1/errors.txt
+  touch $1/warnings.txt
+  touch $1/rtc.txt
+  touch $1/stepcount_all.txt
+  touch $1/stepcount_rtc.txt
+  touch $1/licenses.txt
+
+  if [ ! -z "$(ls -A $1/src)" ]; then
+    get_project_rtcs $1
+
+    # step count
+    count_source_code_all $1 > $1/stepcount_all.txt
+    count_source_code_rtcs $1 > $1/stepcount_rtc.txt
+
+    # static analysis for C/C++
+    find $1/src \( -name "*.c" -o -name "*.cpp" \) -print0 > $1/filelist_cpp.txt
+    if [ -s $1/filelist_cpp.txt ]; then
+      cppcheck --enable=all $1/src 2> $1/cppcheck.txt
+    else
+      touch $1/cppcheck.txt
+    fi
+
+    # static analysis for Python
+    find $1/src \( -name "*.py" \) -print0 > $1/filelist_python.txt
+    if [ -s $1/filelist_python.txt ]; then
+      cat $1/filelist_python.txt | xargs -0 pyflakes > $1/pyflakes.txt
+    else
+      touch $1/pyflakes.txt
+    fi
+
+    # static analysis for Java
+    find $1/src \( -name "*.java" \) -print0 > $1/filelist_java.txt
+    if [ -s $1/filelist_java.txt ]; then
+      findbugs -textui -quiet -emacs $1/src > $1/findbugs.txt
+    else
+      touch $1/findbugs.txt
+    fi
+
+    # collects errors
+    {
+      egrep "error" $1/cppcheck.txt
+      cat $1/findbugs.txt | egrep -v -e '^\s*$' | egrep "\(H\)"
+    } > $1/errors.txt
+
+    # collects warnings
+    {
+      egrep -v "information|error" $1/cppcheck.txt
+      cat $1/pyflakes.txt | egrep -v -e '^\s*$'
+      cat $1/findbugs.txt | egrep -v -e '^\s*$' | egrep -v "\(H\)"
+    } > $1/warnings.txt
+
+    get_project_licenses $1 > $1/licenses.txt
+  fi
+
+  generate_project_summary $1 > $1/summary.txt
+  generate_project_report $1 > $1/report.txt
+
+  return 0
+}
+
+# generate project summary
 function generate_project_summary()
 {
   cat << EOS
@@ -114,51 +218,34 @@ EOS
   return 0
 }
 
-function analyse_project()
+# generate project report
+function generate_project_report()
 {
-  get_project_title $1
+  cat << EOS
+-----------------------------
+Entry No.  : $1/
+Title      : `cat $1/title.txt`
+URL        : `cat $1/url.txt`
+RTCs       : `cat $1/rtc.txt | wc -l`
+`cat $1/rtc.txt | sed 's/^/  - /'`
 
-  touch $1/errors.txt
-  touch $1/warnings.txt
-  touch $1/rtc.txt
-  touch $1/stepcount_all.txt
-  touch $1/stepcount_rtc.txt
-  touch $1/licenses.txt
+Step(all)  :
+`cat $1/stepcount_all.txt | sed 's/^/  - /'`
 
-  if [ ! -z "$(ls -A $1/src)" ]; then
-    get_project_rtcs $1
+Step(RTC)  :
+`cat $1/stepcount_rtc.txt | sed 's/^/  - /'`
 
-    sloccount --duplicates --wide $1 > $1/sloccount_all.txt
-    sloccount --duplicates --wide $1/src > $1/sloccount_rtc.txt
-    egrep "%" $1/sloccount_all.txt >> $1/stepcount_all.txt
-    egrep -v "%" $1/sloccount_rtc.txt | egrep "cpp|java|python|xml|sh|%" >> $1/stepcount_rtc.txt
+Errors     : `cat $1/errors.txt | wc -l`
+`cat $1/errors.txt | sed 's/^/  - /'`
 
-    # static analysis for C/C++
-    cppcheck --enable=all $1/src 2> $1/cppcheck.txt
+Warnings   : `cat $1/warnings.txt | wc -l`
+`cat $1/warnings.txt | sed 's/^/  - /'`
 
-    # static analysis for Python
-    find $1/src \( -name "*.py" \) -print0 | xargs -0 pyflakes > $1/pyflakes.txt
+Licenses   : `cat $1/licenses.txt | wc -l`
+`cat $1/licenses.txt | sed 's/^/  - /'`
 
-    # static analysis for Java
-    findbugs -textui -quiet -emacs $1/src > $1/findbugs.txt
-
-    # collects errors
-    {
-      egrep "error" $1/cppcheck.txt
-      cat $1/findbugs.txt | egrep -v -e '^\s*$' | egrep "\(H\)"
-    } > $1/errors.txt
-
-    # collects warnings
-    {
-      egrep -v "information|error" $1/cppcheck.txt
-      cat $1/pyflakes.txt | egrep -v -e '^\s*$'
-      cat $1/findbugs.txt | egrep -v -e '^\s*$' | egrep -v "\(H\)"
-    } > $1/warnings.txt
-
-    get_project_licenses $1 > $1/licenses.txt
-  fi
-
-  generate_project_summary $1 > $1/summary.txt
+-----------------------------
+EOS
 
   return 0
 }
@@ -250,7 +337,7 @@ function get_project_03()
 
   # get source code
   _git_clone https://github.com/sako35/SoundDirectionRTC2 $project_src
-  mv $project_src/* $project_src/
+  mv $project_src/SoundDirectionRTC2/* $project_src/
 
   # get documents
   mv $project_src/*.pdf $project_doc/
@@ -477,6 +564,7 @@ do
 done
 
 cat */summary.txt > summary_`date +%Y%m%d`.txt
+cat */report.txt > report_`date +%Y%m%d`.txt
 
 echo ""
 echo "Completed $i projects"
