@@ -70,11 +70,17 @@ function get_project_title()
   return 0
 }
 
+# get number of RTC by counting keyword of source code
 function get_project_rtcs()
 {
   find $1 \( -name "*.py" -o -name "*.cpp" -o -name "*.java" \) -print0 | xargs -0 grep -l -i "MyModuleInit(" | sed 's/.*\///' > $1/rtc.txt
 
   return $?
+}
+
+function get_project_licenses()
+{
+  egrep License $1 -r -l | sed -e 's/[0-9]*$//g' | egrep -v "cpack_resources|cmake\/License.rtf|.*\.in" | uniq | sed -e 's/$1//g'
 }
 
 function generate_project_summary()
@@ -99,6 +105,9 @@ Errors     : `cat $1/errors.txt | wc -l`
 Warnings   : `cat $1/warnings.txt | wc -l`
   please check $1/warnings.txt
 
+Licenses   : `cat $1/licenses.txt | wc -l`
+  please check $1/licenses.txt
+
 -----------------------------
 EOS
 
@@ -114,6 +123,7 @@ function analyse_project()
   touch $1/rtc.txt
   touch $1/stepcount_all.txt
   touch $1/stepcount_rtc.txt
+  touch $1/licenses.txt
 
   if [ ! -z "$(ls -A $1/src)" ]; then
     get_project_rtcs $1
@@ -145,6 +155,7 @@ function analyse_project()
       cat $1/findbugs.txt | egrep -v -e '^\s*$' | egrep -v "\(H\)"
     } > $1/warnings.txt
 
+    get_project_licenses $1 > $1/licenses.txt
   fi
 
   generate_project_summary $1 > $1/summary.txt
