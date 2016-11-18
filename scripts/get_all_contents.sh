@@ -87,7 +87,7 @@ function get_project_rtcs()
 function get_project_licenses()
 {
   if [ -d $1 ]; then
-    egrep License $1 -r -l | sed -e 's/[0-9]*$//g' | egrep -v "cpack_resources|cmake\/License.rtf|.*\.in" | uniq | sed -e 's/$1//g'
+    egrep License $1 -r -l | sed -e 's/[0-9]*$//g' | egrep -v "cpack_resources|cmake\/License.rtf|.*\.in" | uniq | sed 's/.*\///g'
   fi
 
   return 0
@@ -115,6 +115,16 @@ function count_source_code_rtcs()
   return 0
 }
 
+# search project executables
+function get_project_executables()
+{
+  if [ -d $1 ]; then
+    find $1 -type f -not -name "*.txt" -print | xargs file | grep "executable" | egrep -v "DLL|Python|shell script" | sed 's/.*\/\(.*:\)/\1/g' | sed -e 's/ //g'
+  fi
+
+  return 0
+}
+
 
 # analyze project
 function analyse_project()
@@ -132,6 +142,7 @@ function analyse_project()
   touch $1/stepcount_all.txt
   touch $1/stepcount_rtc.txt
   touch $1/licenses.txt
+  touch $1/executables.txt
 
   if [ ! -z "$(ls -A $1/src)" ]; then
     get_project_rtcs $1
@@ -178,6 +189,7 @@ function analyse_project()
     } > $1/warnings.txt
 
     get_project_licenses $1 > $1/licenses.txt
+    get_project_executables $1 > $1/executables.txt
   fi
 
   generate_project_summary $1 > $1/summary.txt
@@ -212,6 +224,16 @@ Warnings   : `cat $1/warnings.txt | wc -l`
 Licenses   : `cat $1/licenses.txt | wc -l`
   please check $1/licenses.txt
 
+Executables: `cat $1/executables.txt | wc -l`
+  [win32]
+`cat $1/executables.txt | egrep -i "windows" | egrep -i "386" | cut -d: -f1 | sed 's/^/  - /'`
+  [win64]
+`cat $1/executables.txt | egrep -i "windows" | egrep -i "x86-64" | cut -d: -f1 | sed 's/^/  - /'`
+  [linux32]
+`cat $1/executables.txt | egrep -i "linux" | egrep -i "32-bit" | cut -d: -f1 | sed 's/^/  - /'`
+  [linux64]
+`cat $1/executables.txt | egrep -i "linux" | egrep -i "64-bit" | cut -d: -f1 | sed 's/^/  - /'`
+
 -----------------------------
 EOS
 
@@ -243,6 +265,16 @@ Warnings   : `cat $1/warnings.txt | wc -l`
 
 Licenses   : `cat $1/licenses.txt | wc -l`
 `cat $1/licenses.txt | sed 's/^/  - /'`
+
+Executables: `cat $1/executables.txt | wc -l`
+  [win32]
+`cat $1/executables.txt | egrep -i "windows" | egrep -i "386" | sed 's/^/  - /'`
+  [win64]
+`cat $1/executables.txt | egrep -i "windows" | egrep -i "x86-64" | sed 's/^/  - /'`
+  [linux32]
+`cat $1/executables.txt | egrep -i "linux" | egrep -i "32-bit" | sed 's/^/  - /'`
+  [linux64]
+`cat $1/executables.txt | egrep -i "linux" | egrep -i "64-bit" | sed 's/^/  - /'`
 
 -----------------------------
 EOS
@@ -496,13 +528,14 @@ function get_project_12()
   local project_util=$project/util
 
   # get source code
-  _wget http://www.openrtm.org/openrtm/sites/default/files/6133/StarTno_2016.zip $project_src/
-  unzip $project_src/StarTno_2016.zip -d $project_src/
-  mv $project_src/StarTno_2016/* $project_src/
+  _wget http://www.openrtm.org/openrtm/sites/default/files/6133/StarTno_2016_V2.zip $project_src/
+  unzip $project_src/StarTno_2016_V2.zip -d $project_src/
+  mv $project_src/StarTno_2016_V2/* $project_src/
   mv $project_src/00_StarTno_00_Win7_VsualStudio2013/* $project_src/
 
-
   # get documents
+  _wget http://www.openrtm.org/openrtm/sites/default/files/6133/M_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_%E3%81%BE%E3%81%A8%E3%82%81.zip $project_doc/
+  unzip $project_doc/M_*.zip -d $project_doc/
   find  $project_src \( -name "*.pdf" -o -name "*.doc*" \) -print0 | xargs -0 -i mv {} $project_doc/
 
   # get utility tools
