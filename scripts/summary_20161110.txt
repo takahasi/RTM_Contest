@@ -1,0 +1,233 @@
+-----------------------------
+Entry No.  : 01/
+Title      : 四足歩行ロボット制御用RTコンポーネント群|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_01
+# of RTC   : 9
+Step(all)  :
+cpp:          21642 (83.70%)
+sh:            2104 (8.14%)
+python:        1134 (4.39%)
+xml:            976 (3.77%)
+
+Step(RTC)  :
+6711    src_Four_legged_Robot_Simulator cpp=6255,sh=263,xml=193
+4354    src_Foot_Position_Controller cpp=3620,xml=471,sh=263
+3743    src_Intermittent_Crawl_Gait_Controller cpp=3356,sh=263,xml=124
+3727    src_Crawl_Gait_Controller cpp=3344,sh=263,xml=120
+3183    src_Four_legged_Robot_Scripts cpp=2353,python=567,sh=263
+3183    util            cpp=2353,python=567,sh=263
+692     src_EV3_Leg_Controller cpp=361,sh=263,xml=68
+263     src_FourLeggedRobot_RTno sh=263
+
+Errors     :
+[01/src/Four_legged_Robot_Scripts/Components/CPP/drawstuff/src/windows.cpp:118]: (error) Array 'keybuffer[16]' accessed at index 16, which is out of bounds.
+[01/src/Four_legged_Robot_Simulator/release/drawstuff/src/windows.cpp:118]: (error) Array 'keybuffer[16]' accessed at index 16, which is out of bounds.
+
+-----------------------------
+-----------------------------
+Entry No.  : 02/
+Title      : 小型移動ロボットによるRTミドルウェア学習教材|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_02
+# of RTC   : 15
+Step(all)  :
+sh:            4525 (40.25%)
+cpp:           4014 (35.71%)
+python:        1747 (15.54%)
+xml:            955 (8.50%)
+
+Step(RTC)  :
+2786    util            sh=1632,python=641,cpp=428,xml=85
+1189    src_EducatorVehicle cpp=855,sh=263,xml=71
+955     src_TetrixVehicle cpp=559,sh=263,xml=133
+908     src_RasPiMouseSample python=315,sh=263,cpp=208,xml=122
+898     src_RaspberryPiMouseGUI python=590,sh=263,xml=45
+871     src_NineAxisSensor_RT_USB cpp=547,sh=263,xml=61
+808     src_ControlEducatorVehicle cpp=447,sh=263,xml=98
+707     src_EV3Sample   sh=263,cpp=216,xml=118,python=110
+640     src_RaspberryPiMouseController_Joystick cpp=282,sh=263,xml=95
+544     src_RaspberryPiMouseController_DistanceSensor sh=263,cpp=231,xml=50
+541     src_VehicleController sh=263,cpp=241,xml=37
+394     src_FloatSeqToVelocity sh=263,python=91,xml=40
+
+Errors     :
+[02/src/EducatorVehicle/src/controlEV3.cpp:584]: (error) Mismatching allocation and deallocation: temp_file_data
+
+-----------------------------
+-----------------------------
+Entry No.  : 03/
+Title      : Kinectv2のマイクアレイを用いた音源方向推定RTC|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_03
+# of RTC   : 1
+Step(all)  :
+sh:             263 (48.43%)
+cpp:            227 (41.80%)
+xml:             53 (9.76%)
+
+Step(RTC)  :
+543     src_SoundDirectionRTC2 sh=263,cpp=227,xml=53
+
+Errors     :
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 04/
+Title      : ZumoとRaspberryPiを用いた教育用ロボット環境|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_04
+# of RTC   : 5
+Step(all)  :
+python:         564 (43.28%)
+cpp:            476 (36.53%)
+sh:             263 (20.18%)
+
+Step(RTC)  :
+1303    src_openRTM2016_04 python=564,cpp=476,sh=263
+
+Errors     :
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 05/
+Title      : RaspberryPiと複数台のArduinoDuoを用いたアナログ入出力を増設するためのRTC|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_05
+# of RTC   : 2
+Step(all)  :
+sh:             263 (58.19%)
+python:         139 (30.75%)
+xml:             50 (11.06%)
+
+Step(RTC)  :
+452     src_RaspberryPi-Arduino-Duo-RTC sh=263,python=139,xml=50
+
+Errors     :
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 06/
+Title      : アンケートの入力時間の違いを利用した重みづけ評価RTC|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_06
+# of RTC   : 2
+Step(all)  :
+java:           436 (49.77%)
+cpp:            360 (41.10%)
+xml:             71 (8.11%)
+sh:               9 (1.03%)
+
+Step(RTC)  :
+494     src_ConciergeRSNP5 java=436,xml=49,sh=9
+382     src_utteranceServer cpp=360,xml=22
+
+Errors     :
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 07/
+Title      : 教育用ロボットアームコンポーネントの開発|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_07
+# of RTC   : 
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     :
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 08/
+Title      : 移動ロボット開発支援のためのRTコンポーネント群|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_08
+# of RTC   : 
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     :
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 09/
+Title      : 物体認識系コンポーネント群|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_09
+# of RTC   : 
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     :
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 10/
+Title      : RTコンポーネントを用いたセンサデータ収集基盤の開発|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_10
+# of RTC   : 
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     :
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 11/
+Title      : 教室内の注目度計測RTコンポーネント|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_11
+# of RTC   : 1
+Step(all)  :
+cpp:            424 (92.98%)
+xml:             32 (7.02%)
+
+Step(RTC)  :
+456     src_Attention_degree cpp=424,xml=32
+
+Errors     :
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 12/
+Title      : RTミドルウェア入門用コンポーネント群StarTnoの開発|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_12
+# of RTC   : 
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     :
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 13/
+Title      : RTミドルウェアを用いたメディアアート制作およびウェブサイトによる支援|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_13
+# of RTC   : 4
+Step(all)  :
+cpp:            774 (62.27%)
+sh:             263 (21.16%)
+xml:            206 (16.57%)
+
+Step(RTC)  :
+1243    src_Magicalight.git cpp=774,sh=263,xml=206
+
+Errors     :
+
+
+-----------------------------

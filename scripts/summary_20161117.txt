@@ -1,0 +1,385 @@
+-----------------------------
+Entry No.  : 01/
+Title      : 四足歩行ロボット制御用RTコンポーネント群|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_01
+RTCs       : 9
+  - EV3_Leg_ControllerComp.cpp
+  - Four_legged_Robot_SimulatorComp.cpp
+  - Crawl_Gait_ControllerComp.cpp
+  - Intermittent_Crawl_Gait_ControllerComp.cpp
+  - TkJoyStickComp.py
+  - FloatSeqToVelocity.py
+  - Foot_Position_ControllerComp.cpp
+  - TkJoyStickComp.py
+  - FloatSeqToVelocity.py
+
+Step(all)  :
+  - cpp:          14821 (87.54%)
+  - python:        1134 (6.70%)
+  - xml:            976 (5.76%)
+
+Step(RTC)  :
+  - 4169    Four_legged_Robot_Simulator cpp=3976,xml=193
+  - 4101    Foot_Position_Controller cpp=3630,xml=471
+  - 3557    Intermittent_Crawl_Gait_Controller cpp=3433,xml=124
+  - 3541    Crawl_Gait_Controller cpp=3421,xml=120
+  - 567     Four_legged_Robot_Scripts python=567
+  - 429     EV3_Leg_Controller cpp=361,xml=68
+
+Errors     : 0
+
+
+Warnings   : 160
+  please check 01/warnings.txt
+
+Licenses   : 48
+  please check 01/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 02/
+Title      : 小型移動ロボットによるRTミドルウェア学習教材|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_02
+RTCs       : 15
+  - VehicleControllerComp.cpp
+  - ControlEducatorVehicleComp.cpp
+  - RaspberryPiMouseController_JoystickComp.cpp
+  - RasPiMouseSamplePy.py
+  - RasPiMouseSampleCPPComp.cpp
+  - NineAxisSensor_RT_USBComp.cpp
+  - RaspberryPiMouseController_DistanceSensorComp.cpp
+  - FloatSeqToVelocity.py
+  - TetrixVehicleComp.cpp
+  - EducatorVehicleComp.cpp
+  - RaspberryPiMouseGUI.py
+  - EV3SamplePy.py
+  - EV3SampleCPPComp.cpp
+  - RaspberryPiMouseGUI.py
+  - FloatSeqToVelocityComp.cpp
+
+Step(all)  :
+  - cpp:           4060 (59.57%)
+  - python:        1747 (25.63%)
+  - xml:            955 (14.01%)
+  - sh:              54 (0.79%)
+
+Step(RTC)  :
+  - 942     EducatorVehicle cpp=871,xml=71
+  - 722     TetrixVehicle   cpp=589,xml=133
+  - 645     RasPiMouseSample python=315,cpp=208,xml=122
+  - 635     RaspberryPiMouseGUI python=590,xml=45
+  - 608     NineAxisSensor_RT_USB cpp=547,xml=61
+  - 545     ControlEducatorVehicle cpp=447,xml=98
+  - 444     EV3Sample       cpp=216,xml=118,python=110
+  - 377     RaspberryPiMouseController_Joystick cpp=282,xml=95
+  - 281     RaspberryPiMouseController_DistanceSensor cpp=231,xml=50
+  - 278     VehicleController cpp=241,xml=37
+  - 131     FloatSeqToVelocity python=91,xml=40
+
+Errors     : 0
+
+
+Warnings   : 46
+  please check 02/warnings.txt
+
+Licenses   : 106
+  please check 02/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 03/
+Title      : Kinectv2のマイクアレイを用いた音源方向推定RTC|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_03
+RTCs       : 1
+  - SoundDirectionComp.cpp
+
+Step(all)  :
+  - cpp:            227 (81.07%)
+  - xml:             53 (18.93%)
+
+Step(RTC)  :
+  - 280     Kinect_SoundDirection cpp=227,xml=53
+
+Errors     : 0
+
+
+Warnings   : 0
+  please check 03/warnings.txt
+
+Licenses   : 6
+  please check 03/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 04/
+Title      : ZumoとRaspberryPiを用いた教育用ロボット環境|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_04
+RTCs       : 5
+  - JoyVelRTC.py
+  - JoystickRTC.py
+  - LineTracer.py
+  - ULongSeqInput.py
+  - Zumo.py
+
+Step(all)  :
+  - python:         564 (54.23%)
+  - cpp:            476 (45.77%)
+
+Step(RTC)  :
+  - 564     ZumoComponents  python=564
+  - 238     Zumo-rasp       cpp=238
+  - 238     Zumo-win        cpp=238
+
+Errors     : 0
+
+
+Warnings   : 22
+  please check 04/warnings.txt
+
+Licenses   : 0
+  please check 04/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 05/
+Title      : RaspberryPiと複数台のArduinoDuoを用いたアナログ入出力を増設するためのRTC|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_05
+RTCs       : 2
+  - SerialIn.py
+  - SerialOut.py
+
+Step(all)  :
+  - python:         139 (73.54%)
+  - xml:             50 (26.46%)
+
+Step(RTC)  :
+  - 104     SerialIn        python=77,xml=27
+  - 85      SerialOut       python=62,xml=23
+
+Errors     : 0
+
+
+Warnings   : 3
+  please check 05/warnings.txt
+
+Licenses   : 12
+  please check 05/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 06/
+Title      : アンケートの入力時間の違いを利用した重みづけ評価RTC|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_06
+RTCs       : 2
+  - utteranceServerComp.cpp
+  - ConciergeRSNP5Comp.java
+
+Step(all)  :
+  - java:           436 (49.77%)
+  - cpp:            360 (41.10%)
+  - xml:             71 (8.11%)
+  - sh:               9 (1.03%)
+
+Step(RTC)  :
+  - 494     ConciergeRSNP5  java=436,xml=49,sh=9
+  - 382     utteranceServer cpp=360,xml=22
+
+Errors     : 2
+  - ConciergeRSNP5.java:51:51 IP: ConciergeRSNP5.deleteRtc(RTObject_impl) へのパラメータ rtcBase は、読み取られずに上書きされています。 (H) 
+  - ConciergeRSNP5.java:51:51 DLS: rtcBase への無効な null 代入です。ConciergeRSNP5.deleteRtc(RTObject_impl) (H) 
+
+Warnings   : 20
+  please check 06/warnings.txt
+
+Licenses   : 1
+  please check 06/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 07/
+Title      : 教育用ロボットアームコンポーネントの開発|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_07
+RTCs       : 3
+  - ChoreonoidCRANEControllerRTCComp.cpp
+  - ManipulatorControlSampleComp.cpp
+  - RT_CRANE_RTCComp.cpp
+
+Step(all)  :
+  - cpp:          16993 (95.55%)
+  - ansic:          594 (3.34%)
+  - xml:            143 (0.80%)
+  - sh:              55 (0.31%)
+
+Step(RTC)  :
+  - 8854    ChoreonoidCRANEControllerRTC cpp=8481,ansic=302,xml=71
+  - 8550    RT_CRANE_RTC    cpp=8220,ansic=292,xml=38
+  - 326     ManipulatorControlSample cpp=292,xml=34
+
+Errors     : 0
+
+
+Warnings   : 160
+  please check 07/warnings.txt
+
+Licenses   : 17
+  please check 07/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 08/
+Title      : 移動ロボット開発支援のためのRTコンポーネント群|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_08
+RTCs       : 0
+
+
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     : 0
+
+
+Warnings   : 0
+  please check 08/warnings.txt
+
+Licenses   : 0
+  please check 08/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 09/
+Title      : 物体認識系コンポーネント群|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_09
+RTCs       : 0
+
+
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     : 0
+
+
+Warnings   : 0
+  please check 09/warnings.txt
+
+Licenses   : 0
+  please check 09/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 10/
+Title      : RTコンポーネントを用いたセンサデータ収集基盤の開発|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_10
+RTCs       : 0
+
+
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     : 0
+
+
+Warnings   : 0
+  please check 10/warnings.txt
+
+Licenses   : 0
+  please check 10/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 11/
+Title      : 教室内の注目度計測RTコンポーネント|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_11
+RTCs       : 1
+  - Attention_degreeComp.cpp
+
+Step(all)  :
+  - cpp:            424 (92.98%)
+  - xml:             32 (7.02%)
+
+Step(RTC)  :
+  - 456     src             cpp=424,xml=32
+
+Errors     : 0
+
+
+Warnings   : 20
+  please check 11/warnings.txt
+
+Licenses   : 0
+  please check 11/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 12/
+Title      : RTミドルウェア入門用コンポーネント群StarTnoの開発|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_12
+RTCs       : 6
+  - CinComp.cpp
+  - KeyinComp.cpp
+  - CoutComp.cpp
+  - StarTno_01Comp.cpp
+  - 0_StarTno_01Comp.cpp
+  - xNComp.cpp
+
+Step(all)  :
+  - cpp:           5574 (60.47%)
+  - ansic:         1895 (20.56%)
+  - xml:           1749 (18.97%)
+
+Step(RTC)  :
+  - 1561    03_StarTno_03(НьРмТЖ) xml=1561
+  - 1476    01_StarTno_01   cpp=1048,ansic=395,xml=33
+  - 1281    xN              cpp=849,ansic=375,xml=57
+  - 1259    Cout            cpp=830,ansic=375,xml=54
+  - 1256    Keyin           cpp=859,ansic=375,xml=22
+  - 1227    Cin             cpp=830,ansic=375,xml=22
+
+Errors     : 0
+
+
+Warnings   : 0
+  please check 12/warnings.txt
+
+Licenses   : 51
+  please check 12/licenses.txt
+
+-----------------------------
+-----------------------------
+Entry No.  : 13/
+Title      : RTミドルウェアを用いたメディアアート制作およびウェブサイトによる支援|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_13
+RTCs       : 4
+  - AnalogInputComp.cpp
+  - ThresholdSwitchComp.cpp
+  - PWMFluctuationsComp.cpp
+  - LEDStateManagerComp.cpp
+
+Step(all)  :
+  - cpp:            808 (79.29%)
+  - xml:            211 (20.71%)
+
+Step(RTC)  :
+  - 324     LEDStateManager cpp=275,xml=49
+  - 274     ThresholdSwitch cpp=206,xml=68
+  - 264     PWMFluctuations cpp=204,xml=60
+  - 157     AnalogInput     cpp=123,xml=34
+
+Errors     : 0
+
+
+Warnings   : 0
+  please check 13/warnings.txt
+
+Licenses   : 20
+  please check 13/licenses.txt
+
+-----------------------------
