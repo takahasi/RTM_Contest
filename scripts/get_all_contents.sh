@@ -87,7 +87,7 @@ function get_project_rtcs()
 function get_project_licenses()
 {
   if [ -d $1 ]; then
-    egrep License $1 -r -l | sed -e 's/[0-9]*$//g' | egrep -v "cpack_resources|cmake\/License.rtf|.*\.in" | uniq | sed 's/.*\///g'
+    egrep License $1 -r -l | sed -e 's/[0-9]*$//g' | egrep -v "cpack_resources|cmake\/License.rtf|.*\.in" | uniq
   fi
 
   return 0
@@ -152,9 +152,9 @@ function analyse_project()
     count_source_code_rtcs $1 > $1/stepcount_rtc.txt
 
     # static analysis for C/C++
-    find $1/src \( -name "*.c" -o -name "*.cpp" \) -print0 > $1/filelist_cpp.txt
+    find $1/src \( -name "*.c" -o -name "*.cpp" \) -print | egrep -v "idl" > $1/filelist_cpp.txt
     if [ -s $1/filelist_cpp.txt ]; then
-      cppcheck --enable=all $1/src 2> $1/cppcheck.txt
+      cat $1/filelist_cpp.txt | sed 's/ /" "/g' | xargs cppcheck --enable=all 2> $1/cppcheck.txt
     else
       touch $1/cppcheck.txt
     fi
