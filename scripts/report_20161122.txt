@@ -14,31 +14,22 @@ RTCs       : 9
   - FloatSeqToVelocity.py
 
 Step(all)  :
-  - cpp:          14993 (87.66%)
+  - cpp:          14984 (87.66%)
   - python:        1134 (6.63%)
   - xml:            976 (5.71%)
 
 Step(RTC)  :
-  - 4212    Four_legged_Robot_Simulator cpp=4019,xml=193
-  - 4144    Foot_Position_Controller cpp=3673,xml=471
-  - 3600    Intermittent_Crawl_Gait_Controller cpp=3476,xml=124
+  - 4209    Four_legged_Robot_Simulator cpp=4016,xml=193
+  - 4141    Foot_Position_Controller cpp=3670,xml=471
+  - 3597    Intermittent_Crawl_Gait_Controller cpp=3473,xml=124
   - 3584    Crawl_Gait_Controller cpp=3464,xml=120
   - 567     Four_legged_Robot_Scripts python=567
   - 429     EV3_Leg_Controller cpp=361,xml=68
 
-Errors     : 12
+Errors     : 3
   - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:179]: (error) Using 'memcpy' on class that contains a virtual method.
   - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:180]: (error) Using 'memcpy' on class that contains a virtual method.
   - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:181]: (error) Using 'memcpy' on class that contains a virtual method.
-  - [01/src/Foot_Position_Controller/Four_legged_Robot/Four_legged_Robot.cpp:179]: (error) Using 'memcpy' on class that contains a virtual method.
-  - [01/src/Foot_Position_Controller/Four_legged_Robot/Four_legged_Robot.cpp:180]: (error) Using 'memcpy' on class that contains a virtual method.
-  - [01/src/Foot_Position_Controller/Four_legged_Robot/Four_legged_Robot.cpp:181]: (error) Using 'memcpy' on class that contains a virtual method.
-  - [01/src/Four_legged_Robot_Simulator/Four_legged_Robot/Four_legged_Robot.cpp:179]: (error) Using 'memcpy' on class that contains a virtual method.
-  - [01/src/Four_legged_Robot_Simulator/Four_legged_Robot/Four_legged_Robot.cpp:180]: (error) Using 'memcpy' on class that contains a virtual method.
-  - [01/src/Four_legged_Robot_Simulator/Four_legged_Robot/Four_legged_Robot.cpp:181]: (error) Using 'memcpy' on class that contains a virtual method.
-  - [01/src/Intermittent_Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:179]: (error) Using 'memcpy' on class that contains a virtual method.
-  - [01/src/Intermittent_Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:180]: (error) Using 'memcpy' on class that contains a virtual method.
-  - [01/src/Intermittent_Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:181]: (error) Using 'memcpy' on class that contains a virtual method.
 
 Warnings   : 20
   - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:317]: (style) The function 'calcJointVel' is never used.
