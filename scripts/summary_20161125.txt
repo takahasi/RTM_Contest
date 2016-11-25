@@ -135,16 +135,21 @@ Executables: 11
 -----------------------------
 -----------------------------
 Entry No.  : 03/
-Title      : Kinectv2のマイクアレイを用いた音源方向推定RTC|OpenRTM-aist
+Title      : Kinectv2のマイクアレイを用いた音源方向推定RTCとその応用|OpenRTM-aist
 URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_03
-RTCs       : 1
+RTCs       : 3
+  - SoundDirection2Comp.cpp
+  - FurimukiComp.cpp
   - SoundDirectionComp.cpp
 
 Step(all)  :
-  - cpp:            227 (81.07%)
-  - xml:             53 (18.93%)
+  - cpp:           2114 (69.88%)
+  - ansic:          826 (27.31%)
+  - xml:             85 (2.81%)
 
 Step(RTC)  :
+  - 1391    SoundDirection2 cpp=971,ansic=413,xml=7
+  - 1354    furimuki        cpp=916,ansic=413,xml=25
   - 280     Kinect_SoundDirection cpp=227,xml=53
 
 Errors     : 0
@@ -153,14 +158,25 @@ Errors     : 0
 Warnings   : 0
   please check 03/warnings.txt
 
-Licenses   : 6
+Licenses   : 28
   please check 03/licenses.txt
 
-Executables: 0
+Executables: 12
   [win32]
 
   [win64]
-
+  - CMakeDetermineCompilerABI_CXX.bin
+  - CMakeDetermineCompilerABI_C.bin
+  - CompilerIdC.exe
+  - CompilerIdCXX.exe
+  - feature_tests.bin
+  - SoundDirection2Comp.exe
+  - CMakeDetermineCompilerABI_CXX.bin
+  - CMakeDetermineCompilerABI_C.bin
+  - CompilerIdC.exe
+  - CompilerIdCXX.exe
+  - feature_tests.bin
+  - FurimukiComp.exe
   [linux32]
 
   [linux64]
