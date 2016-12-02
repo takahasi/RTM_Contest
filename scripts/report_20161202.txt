@@ -1,0 +1,980 @@
+-----------------------------
+Entry No.  : 01/
+Title      : 四足歩行ロボット制御用RTコンポーネント群|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_01
+RTCs       : 9
+  - EV3_Leg_ControllerComp.cpp
+  - Four_legged_Robot_SimulatorComp.cpp
+  - Crawl_Gait_ControllerComp.cpp
+  - Intermittent_Crawl_Gait_ControllerComp.cpp
+  - TkJoyStickComp.py
+  - FloatSeqToVelocity.py
+  - Foot_Position_ControllerComp.cpp
+  - TkJoyStickComp.py
+  - FloatSeqToVelocity.py
+
+Step(all)  :
+  - cpp:          14984 (87.66%)
+  - python:        1134 (6.63%)
+  - xml:            976 (5.71%)
+
+Step(RTC)  :
+  - 4209    Four_legged_Robot_Simulator cpp=4016,xml=193
+  - 4141    Foot_Position_Controller cpp=3670,xml=471
+  - 3597    Intermittent_Crawl_Gait_Controller cpp=3473,xml=124
+  - 3584    Crawl_Gait_Controller cpp=3464,xml=120
+  - 567     Four_legged_Robot_Scripts python=567
+  - 429     EV3_Leg_Controller cpp=361,xml=68
+
+Errors     : 3
+  - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:179]: (error) Using 'memcpy' on class that contains a virtual method.
+  - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:180]: (error) Using 'memcpy' on class that contains a virtual method.
+  - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:181]: (error) Using 'memcpy' on class that contains a virtual method.
+
+Warnings   : 20
+  - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:317]: (style) The function 'calcJointVel' is never used.
+  - [01/src/Four_legged_Robot_Simulator/src/SimulatorObj_Four_legged_Robot.cpp:343]: (style) The function 'controlSlider' is never used.
+  - [01/src/EV3_Leg_Controller/src/EV3_Leg_Controller.cpp:306]: (style) The function 'count_to_rot' is never used.
+  - [01/src/Four_legged_Robot_Simulator/src/DrawThread_Four_legged_Robot.cpp:116]: (style) The function 'drawCylinder' is never used.
+  - [01/src/EV3_Leg_Controller/src/EV3_Leg_Controller.cpp:270]: (style) The function 'get_position_motor' is never used.
+  - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:449]: (style) The function 'setCurrentPosition' is never used.
+  - [01/src/Four_legged_Robot_Simulator/src/SimulatorObj_Four_legged_Robot.cpp:184]: (style) The function 'setCylinder' is never used.
+  - [01/src/Four_legged_Robot_Simulator/src/SimulatorObj_Four_legged_Robot.cpp:227]: (style) The function 'setFixed' is never used.
+  - [01/src/Four_legged_Robot_Simulator/src/SimulatorObj_Four_legged_Robot.cpp:214]: (style) The function 'setSlider' is never used.
+  - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Leg_Object.cpp:219]: (style) The function 'setTargetPos' is never used.
+  - [01/src/Four_legged_Robot_Simulator/src/DrawThread_Four_legged_Robot.cpp:77]: (style) The function 'svc' is never used.
+  - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:374]: (style) The function 'trot_gait' is never used.
+  - [01/src/Crawl_Gait_Controller/Four_legged_Robot/Four_legged_Robot.cpp:327]: (style) The function 'updatePos' is never used.
+  - 01/src/Four_legged_Robot_Scripts/Components/Python/TkJoyStickComp.py:6: 'time' imported but unused
+  - 01/src/Four_legged_Robot_Scripts/Components/Python/tkjoystick.py:24: 'from Tkinter import *' used; unable to detect undefined names
+  - 01/src/Four_legged_Robot_Scripts/Components/Python/tkjoystick.py:25: 'time' imported but unused
+  - 01/src/Four_legged_Robot_Scripts/Components/Python/tkjoystick.py:27: 'mutex' imported but unused
+  - 01/src/Four_legged_Robot_Scripts/Components/Python/tkjoystick.py:28: 'sys' imported but unused
+  - 01/src/Four_legged_Robot_Scripts/Components/Python/FloatSeqToVelocity.py:18: 'time' imported but unused
+  - 01/src/Four_legged_Robot_Scripts/Components/Python/FloatSeqToVelocity.py:336: local variable 'comp' is assigned to but never used
+
+Licenses   : 48
+  - 01/src/EV3_Leg_Controller/COPYING
+  - 01/src/EV3_Leg_Controller/README.EV3_Leg_Controller
+  - 01/src/EV3_Leg_Controller/COPYING.LESSER
+  - 01/src/EV3_Leg_Controller/doc/content/index.txt
+  - 01/src/EV3_Leg_Controller/doc/content/index_j.txt
+  - 01/src/Four_legged_Robot_Simulator/README.Four_legged_Robot_Simulator
+  - 01/src/Four_legged_Robot_Simulator/Licenses/Eigen/COPYING.LGPL
+  - 01/src/Four_legged_Robot_Simulator/Licenses/ODE/LICENSE.TXT
+  - 01/src/Four_legged_Robot_Simulator/Licenses/OmniORB/COPYING
+  - 01/src/Four_legged_Robot_Simulator/Licenses/OmniORB/COPYING.LIB
+  - 01/src/Four_legged_Robot_Simulator/COPYING
+  - 01/src/Four_legged_Robot_Simulator/COPYING.LESSER
+  - 01/src/Four_legged_Robot_Simulator/doc/content/index.txt
+  - 01/src/Four_legged_Robot_Simulator/doc/content/index_j.txt
+  - 01/src/Crawl_Gait_Controller/Licenses/Eigen/COPYING.LGPL
+  - 01/src/Crawl_Gait_Controller/Licenses/OmniORB/COPYING
+  - 01/src/Crawl_Gait_Controller/Licenses/OmniORB/COPYING.LIB
+  - 01/src/Crawl_Gait_Controller/README.Crawl_Gait_Controller
+  - 01/src/Crawl_Gait_Controller/COPYING
+  - 01/src/Crawl_Gait_Controller/COPYING.LESSER
+  - 01/src/Crawl_Gait_Controller/doc/content/index.txt
+  - 01/src/Crawl_Gait_Controller/doc/content/index_j.txt
+  - 01/src/Intermittent_Crawl_Gait_Controller/Licenses/Eigen/COPYING.LGPL
+  - 01/src/Intermittent_Crawl_Gait_Controller/Licenses/OmniORB/COPYING
+  - 01/src/Intermittent_Crawl_Gait_Controller/Licenses/OmniORB/COPYING.LIB
+  - 01/src/Intermittent_Crawl_Gait_Controller/README.Intermittent_Crawl_Gait_Controller
+  - 01/src/Intermittent_Crawl_Gait_Controller/COPYING
+  - 01/src/Intermittent_Crawl_Gait_Controller/COPYING.LESSER
+  - 01/src/Intermittent_Crawl_Gait_Controller/doc/content/index.txt
+  - 01/src/Intermittent_Crawl_Gait_Controller/doc/content/index_j.txt
+  - 01/src/Four_legged_Robot_Scripts/Licenses/Eigen/COPYING.LGPL
+  - 01/src/Four_legged_Robot_Scripts/Licenses/ODE/LICENSE.TXT
+  - 01/src/Four_legged_Robot_Scripts/Licenses/RTno/license.txt
+  - 01/src/Four_legged_Robot_Scripts/Licenses/OmniORB/COPYING
+  - 01/src/Four_legged_Robot_Scripts/Licenses/OmniORB/COPYING.LIB
+  - 01/src/Foot_Position_Controller/Licenses/Eigen/COPYING.LGPL
+  - 01/src/Foot_Position_Controller/Licenses/OmniORB/COPYING
+  - 01/src/Foot_Position_Controller/Licenses/OmniORB/COPYING.LIB
+  - 01/src/Foot_Position_Controller/README.Foot_Position_Controller
+  - 01/src/Foot_Position_Controller/COPYING
+  - 01/src/Foot_Position_Controller/COPYING.LESSER
+  - 01/src/Foot_Position_Controller/doc/content/index.txt
+  - 01/src/Foot_Position_Controller/doc/content/index_j.txt
+  - 01/util/Four_legged_Robot_Scripts/Licenses/Eigen/COPYING.LGPL
+  - 01/util/Four_legged_Robot_Scripts/Licenses/ODE/LICENSE.TXT
+  - 01/util/Four_legged_Robot_Scripts/Licenses/RTno/license.txt
+  - 01/util/Four_legged_Robot_Scripts/Licenses/OmniORB/COPYING
+  - 01/util/Four_legged_Robot_Scripts/Licenses/OmniORB/COPYING.LIB
+
+Executables: 18
+  [win32]
+  - Four_legged_Robot_SimulatorComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Crawl_Gait_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Intermittent_Crawl_Gait_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - RTnoProxyComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - rtcd.exe:PE32executable(console)Intel80386,forMSWindows
+  - Intermittent_Crawl_Gait_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Crawl_Gait_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Trot_Gait_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Four_legged_Robot_SimulatorComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Foot_Position_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Foot_Position_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - RTnoProxyComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - rtcd.exe:PE32executable(console)Intel80386,forMSWindows
+  - Intermittent_Crawl_Gait_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Crawl_Gait_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Trot_Gait_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Four_legged_Robot_SimulatorComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - Foot_Position_ControllerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 02/
+Title      : 小型移動ロボットによるRTミドルウェア学習教材|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_02
+RTCs       : 15
+  - VehicleControllerComp.cpp
+  - ControlEducatorVehicleComp.cpp
+  - RaspberryPiMouseController_JoystickComp.cpp
+  - RasPiMouseSamplePy.py
+  - RasPiMouseSampleCPPComp.cpp
+  - NineAxisSensor_RT_USBComp.cpp
+  - RaspberryPiMouseController_DistanceSensorComp.cpp
+  - FloatSeqToVelocity.py
+  - TetrixVehicleComp.cpp
+  - EducatorVehicleComp.cpp
+  - RaspberryPiMouseGUI.py
+  - EV3SamplePy.py
+  - EV3SampleCPPComp.cpp
+  - RaspberryPiMouseGUI.py
+  - FloatSeqToVelocityComp.cpp
+
+Step(all)  :
+  - cpp:           4060 (59.63%)
+  - python:        1740 (25.55%)
+  - xml:            955 (14.03%)
+  - sh:              54 (0.79%)
+
+Step(RTC)  :
+  - 942     EducatorVehicle cpp=871,xml=71
+  - 722     TetrixVehicle   cpp=589,xml=133
+  - 644     RasPiMouseSample python=314,cpp=208,xml=122
+  - 631     RaspberryPiMouseGUI python=586,xml=45
+  - 608     NineAxisSensor_RT_USB cpp=547,xml=61
+  - 545     ControlEducatorVehicle cpp=447,xml=98
+  - 443     EV3Sample       cpp=216,xml=118,python=109
+  - 377     RaspberryPiMouseController_Joystick cpp=282,xml=95
+  - 281     RaspberryPiMouseController_DistanceSensor cpp=231,xml=50
+  - 278     VehicleController cpp=241,xml=37
+  - 130     FloatSeqToVelocity python=90,xml=40
+
+Errors     : 0
+
+
+Warnings   : 20
+  - [02/src/TetrixVehicle/src/HiTechnic_Motor_Driver.cpp:159]: (style) The function 'getBatteryVoltage' is never used.
+  - [02/src/TetrixVehicle/src/HiTechnic_Motor_Driver.cpp:140]: (style) The function 'getEncorderValue' is never used.
+  - [02/src/TetrixVehicle/src/HiTechnic_Motor_Driver.cpp:176]: (style) The function 'getGearRatio' is never used.
+  - [02/src/TetrixVehicle/src/HiTechnic_Servo_Driver.cpp:91]: (style) The function 'getStatus' is never used.
+  - [02/src/EducatorVehicle/src/controlEV3.cpp:397]: (style) The function 'get_position_left_large_motor' is never used.
+  - [02/src/EducatorVehicle/src/controlEV3.cpp:407]: (style) The function 'get_position_right_large_motor' is never used.
+  - [02/src/EducatorVehicle/src/controlEV3.cpp:643]: (style) The function 'get_speed_a' is never used.
+  - [02/src/EducatorVehicle/src/controlEV3.cpp:500]: (style) The function 'get_speed_medium_motor' is never used.
+  - [02/src/EducatorVehicle/src/controlEV3.cpp:625]: (style) The function 'get_speed_x' is never used.
+  - [02/src/EducatorVehicle/src/controlEV3.cpp:634]: (style) The function 'get_speed_y' is never used.
+  - [02/src/TetrixVehicle/src/HiTechnic_Motor_Driver.cpp:213]: (style) The function 'setDCofficient' is never used.
+  - [02/src/TetrixVehicle/src/HiTechnic_Motor_Driver.cpp:201]: (style) The function 'setICofficient' is never used.
+  - [02/src/TetrixVehicle/src/HiTechnic_Motor_Driver.cpp:189]: (style) The function 'setPCofficient' is never used.
+  - [02/src/TetrixVehicle/src/HiTechnic_Servo_Driver.cpp:99]: (style) The function 'setPWMEnable' is never used.
+  - [02/src/TetrixVehicle/src/HiTechnic_Motor_Driver.cpp:113]: (style) The function 'setPosition' is never used.
+  - [02/src/TetrixVehicle/src/HiTechnic_Servo_Driver.cpp:83]: (style) The function 'setStepTime' is never used.
+  - [02/src/EducatorVehicle/src/controlEV3.cpp:551]: (style) The function 'set_image_lcd_filename' is never used.
+  - [02/src/EducatorVehicle/src/controlEV3.cpp:356]: (style) The function 'set_position_left_large_motor' is never used.
+  - [02/src/EducatorVehicle/src/controlEV3.cpp:367]: (style) The function 'set_position_right_large_motor' is never used.
+  - [02/src/EducatorVehicle/src/controlEV3.cpp:479]: (style) The function 'set_speed_medium_motor' is never used.
+
+Licenses   : 106
+  - 02/src/VehicleController/README.VehicleController
+  - 02/src/VehicleController/COPYING
+  - 02/src/VehicleController/COPYING.LESSER
+  - 02/src/VehicleController/doc/content/index.txt
+  - 02/src/VehicleController/doc/content/index_j.txt
+  - 02/src/ControlEducatorVehicle/README.ControlEducatorVehicle
+  - 02/src/ControlEducatorVehicle/COPYING
+  - 02/src/ControlEducatorVehicle/README.ControlEducatorVehicle
+  - 02/src/ControlEducatorVehicle/COPYING.LESSER
+  - 02/src/ControlEducatorVehicle/README.ControlEducatorVehicle
+  - 02/src/ControlEducatorVehicle/doc/content/index_j.txt
+  - 02/src/ControlEducatorVehicle/doc/content/index.txt
+  - 02/src/ControlEducatorVehicle/doc/content/index_j.txt
+  - 02/src/RaspberryPiMouseController_Joystick/README.RaspberryPiMouseController_Joystick
+  - 02/src/RaspberryPiMouseController_Joystick/COPYING
+  - 02/src/RaspberryPiMouseController_Joystick/COPYING.LESSER
+  - 02/src/RaspberryPiMouseController_Joystick/doc/content/index.txt
+  - 02/src/RaspberryPiMouseController_Joystick/doc/content/index_j.txt
+  - 02/src/RasPiMouseSample/RasPiMouseSamplePy/README.RasPiMouseSamplePy
+  - 02/src/RasPiMouseSample/RasPiMouseSamplePy/CMakeLists.txt
+  - 02/src/RasPiMouseSample/RasPiMouseSamplePy/README.RasPiMouseSamplePy
+  - 02/src/RasPiMouseSample/RasPiMouseSamplePy/COPYING
+  - 02/src/RasPiMouseSample/RasPiMouseSamplePy/README.RasPiMouseSamplePy
+  - 02/src/RasPiMouseSample/RasPiMouseSamplePy/COPYING.LESSER
+  - 02/src/RasPiMouseSample/RasPiMouseSamplePy/doc/content/index.txt
+  - 02/src/RasPiMouseSample/RasPiMouseSamplePy/doc/content/index_j.txt
+  - 02/src/RasPiMouseSample/RasPiMouseSamplePy/doc/content/index.txt
+  - 02/src/RasPiMouseSample/RasPiMouseSamplePy/doc/content/index_j.txt
+  - 02/src/RasPiMouseSample/RasPiMouseSampleCPP/README.RasPiMouseSampleCPP
+  - 02/src/RasPiMouseSample/RasPiMouseSampleCPP/COPYING
+  - 02/src/RasPiMouseSample/RasPiMouseSampleCPP/README.RasPiMouseSampleCPP
+  - 02/src/RasPiMouseSample/RasPiMouseSampleCPP/COPYING.LESSER
+  - 02/src/RasPiMouseSample/RasPiMouseSampleCPP/doc/content/index.txt
+  - 02/src/RasPiMouseSample/RasPiMouseSampleCPP/doc/content/index_j.txt
+  - 02/src/RasPiMouseSample/RasPiMouseSampleCPP/doc/content/index.txt
+  - 02/src/RasPiMouseSample/RasPiMouseSampleCPP/doc/content/index_j.txt
+  - 02/src/NineAxisSensor_RT_USB/README.NineAxisSensor_RT_USB
+  - 02/src/NineAxisSensor_RT_USB/COPYING
+  - 02/src/NineAxisSensor_RT_USB/README.NineAxisSensor_RT_USB
+  - 02/src/NineAxisSensor_RT_USB/COPYING.LESSER
+  - 02/src/NineAxisSensor_RT_USB/doc/content/index_j.txt
+  - 02/src/NineAxisSensor_RT_USB/doc/content/index.txt
+  - 02/src/NineAxisSensor_RT_USB/doc/content/index_j.txt
+  - 02/src/RaspberryPiMouseController_DistanceSensor/README.RaspberryPiMouseController_DistanceSensor
+  - 02/src/RaspberryPiMouseController_DistanceSensor/COPYING
+  - 02/src/RaspberryPiMouseController_DistanceSensor/COPYING.LESSER
+  - 02/src/RaspberryPiMouseController_DistanceSensor/doc/content/index.txt
+  - 02/src/RaspberryPiMouseController_DistanceSensor/doc/content/index_j.txt
+  - 02/src/FloatSeqToVelocity/README.FloatSeqToVelocity
+  - 02/src/FloatSeqToVelocity/CMakeLists.txt
+  - 02/src/FloatSeqToVelocity/COPYING
+  - 02/src/FloatSeqToVelocity/COPYING.LESSER
+  - 02/src/FloatSeqToVelocity/doc/content/index.txt
+  - 02/src/FloatSeqToVelocity/doc/content/index_j.txt
+  - 02/src/TetrixVehicle/README.TetrixVehicle
+  - 02/src/TetrixVehicle/COPYING
+  - 02/src/TetrixVehicle/README.TetrixVehicle
+  - 02/src/TetrixVehicle/COPYING.LESSER
+  - 02/src/TetrixVehicle/doc/content/index_j.txt
+  - 02/src/TetrixVehicle/doc/content/index.txt
+  - 02/src/TetrixVehicle/doc/content/index_j.txt
+  - 02/src/TetrixVehicle/doc/content/index.txt
+  - 02/src/EducatorVehicle/README.EducatorVehicle
+  - 02/src/EducatorVehicle/COPYING
+  - 02/src/EducatorVehicle/README.EducatorVehicle
+  - 02/src/EducatorVehicle/COPYING.LESSER
+  - 02/src/EducatorVehicle/doc/content/index.txt
+  - 02/src/EducatorVehicle/doc/content/index_j.txt
+  - 02/src/EducatorVehicle/doc/content/index.txt
+  - 02/src/EducatorVehicle/doc/content/index_j.txt
+  - 02/src/EducatorVehicle/doc/content/index.txt
+  - 02/src/EducatorVehicle/doc/content/index_j.txt
+  - 02/src/RaspberryPiMouseGUI/Licenses/PyQt/LICENSE.GPL
+  - 02/src/RaspberryPiMouseGUI/Licenses/OmniORB/COPYING
+  - 02/src/RaspberryPiMouseGUI/Licenses/OmniORB/COPYING.LIB
+  - 02/src/RaspberryPiMouseGUI/CMakeLists.txt
+  - 02/src/RaspberryPiMouseGUI/COPYING
+  - 02/src/RaspberryPiMouseGUI/dist/sip.pyd
+  - 02/src/RaspberryPiMouseGUI/README.RaspberryPiMouseGUI
+  - 02/src/RaspberryPiMouseGUI/COPYING.LESSER
+  - 02/src/RaspberryPiMouseGUI/doc/content/index.txt
+  - 02/src/RaspberryPiMouseGUI/doc/content/index_j.txt
+  - 02/src/EV3Sample/EV3SamplePy/CMakeLists.txt
+  - 02/src/EV3Sample/EV3SamplePy/README.EV3SamplePy
+  - 02/src/EV3Sample/EV3SamplePy/COPYING
+  - 02/src/EV3Sample/EV3SamplePy/COPYING.LESSER
+  - 02/src/EV3Sample/EV3SamplePy/doc/content/index.txt
+  - 02/src/EV3Sample/EV3SamplePy/doc/content/index_j.txt
+  - 02/src/EV3Sample/EV3SampleCPP/README.EV3SampleCPP
+  - 02/src/EV3Sample/EV3SampleCPP/COPYING
+  - 02/src/EV3Sample/EV3SampleCPP/COPYING.LESSER
+  - 02/src/EV3Sample/EV3SampleCPP/doc/content/index.txt
+  - 02/src/EV3Sample/EV3SampleCPP/doc/content/index_j.txt
+  - 02/util/saveBinaryImage/Licenses/OpenCV/license.txt
+  - 02/util/RaspberryPiMouseRTSystem_script/Components/RaspberryPiMouseGUI/CMakeLists.txt
+  - 02/util/RaspberryPiMouseRTSystem_script/Components/RaspberryPiMouseGUI/COPYING
+  - 02/util/RaspberryPiMouseRTSystem_script/Components/RaspberryPiMouseGUI/dist/sip.pyd
+  - 02/util/RaspberryPiMouseRTSystem_script/Components/RaspberryPiMouseGUI/README.RaspberryPiMouseGUI
+  - 02/util/RaspberryPiMouseRTSystem_script/Components/RaspberryPiMouseGUI/COPYING.LESSER
+  - 02/util/RaspberryPiMouseRTSystem_script/Components/RaspberryPiMouseGUI/doc/content/index.txt
+  - 02/util/RaspberryPiMouseRTSystem_script/Components/RaspberryPiMouseGUI/doc/content/index_j.txt
+  - 02/util/EducatorVehicle_script/Components/FloatSeqToVelocity/README.FloatSeqToVelocity
+  - 02/util/EducatorVehicle_script/Components/FloatSeqToVelocity/COPYING
+  - 02/util/EducatorVehicle_script/Components/FloatSeqToVelocity/COPYING.LESSER
+  - 02/util/EducatorVehicle_script/Components/FloatSeqToVelocity/doc/content/index.txt
+  - 02/util/EducatorVehicle_script/Components/FloatSeqToVelocity/doc/content/index_j.txt
+
+Executables: 11
+  [win32]
+  - RaspberryPiMouseController_JoystickComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - RasPiMouseSampleCPPComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - NineAxisSensor_RT_USBComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - RaspberryPiMouseController_DistanceSensorComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - RaspberryPiMouseGUI.exe:PE32executable(GUI)Intel80386,forMSWindows
+  - w9xpopen.exe:PE32executable(console)Intel80386,forMSWindows
+  - saveBinaryImage.exe:PE32executable(console)Intel80386,forMSWindows
+  - RaspberryPiMouseGUI.exe:PE32executable(GUI)Intel80386,forMSWindows
+  - w9xpopen.exe:PE32executable(console)Intel80386,forMSWindows
+  - FloatSeqToVelocityComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - CalibrationUSBNineAxisSensor.exe:PE32executable(console)Intel80386,forMSWindows
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 03/
+Title      : Kinectv2のマイクアレイを用いた音源方向推定RTCとその応用|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_03
+RTCs       : 3
+  - SoundDirection2Comp.cpp
+  - FurimukiComp.cpp
+  - SoundDirectionComp.cpp
+
+Step(all)  :
+  - cpp:           2114 (69.88%)
+  - ansic:          826 (27.31%)
+  - xml:             85 (2.81%)
+
+Step(RTC)  :
+  - 1391    SoundDirection2 cpp=971,ansic=413,xml=7
+  - 1354    furimuki        cpp=916,ansic=413,xml=25
+  - 280     Kinect_SoundDirection cpp=227,xml=53
+
+Errors     : 0
+
+
+Warnings   : 0
+
+
+Licenses   : 28
+  - 03/src/SoundDirection2/build/CPackSourceConfig.cmake
+  - 03/src/SoundDirection2/build/src/Debug/SoundDirection2Comp.pdb
+  - 03/src/SoundDirection2/build/src/Debug/SoundDirection2.pdb
+  - 03/src/SoundDirection2/build/cpack_options.cmake
+  - 03/src/SoundDirection2/build/CPackConfig.cmake
+  - 03/src/SoundDirection2/build/SoundDirection2.sdf
+  - 03/src/SoundDirection2/build/wix.xsl
+  - 03/src/SoundDirection2/README.SoundDirection
+  - 03/src/SoundDirection2/COPYING
+  - 03/src/SoundDirection2/COPYING.LESSER
+  - 03/src/SoundDirection2/doc/content/index.txt
+  - 03/src/SoundDirection2/doc/content/index_j.txt
+  - 03/src/furimuki/build/CPackSourceConfig.cmake
+  - 03/src/furimuki/build/cpack_options.cmake
+  - 03/src/furimuki/build/CPackConfig.cmake
+  - 03/src/furimuki/build/Furimuki.sdf
+  - 03/src/furimuki/build/wix.xsl
+  - 03/src/furimuki/README.Furimuki
+  - 03/src/furimuki/COPYING
+  - 03/src/furimuki/COPYING.LESSER
+  - 03/src/furimuki/doc/content/index.txt
+  - 03/src/furimuki/doc/content/index_j.txt
+  - 03/src/Kinect_SoundDirection/README.SoundDirection
+  - 03/src/Kinect_SoundDirection/COPYING
+  - 03/src/Kinect_SoundDirection/README.SoundDirection
+  - 03/src/Kinect_SoundDirection/COPYING.LESSER
+  - 03/src/Kinect_SoundDirection/doc/content/index.txt
+  - 03/src/Kinect_SoundDirection/doc/content/index_j.txt
+
+Executables: 12
+  [win32]
+
+  [win64]
+  - CMakeDetermineCompilerABI_CXX.bin:PE32+executable(console)x86-64,forMSWindows
+  - CMakeDetermineCompilerABI_C.bin:PE32+executable(console)x86-64,forMSWindows
+  - CompilerIdC.exe:PE32+executable(console)x86-64,forMSWindows
+  - CompilerIdCXX.exe:PE32+executable(console)x86-64,forMSWindows
+  - feature_tests.bin:PE32+executable(console)x86-64,forMSWindows
+  - SoundDirection2Comp.exe:PE32+executable(console)x86-64,forMSWindows
+  - CMakeDetermineCompilerABI_CXX.bin:PE32+executable(console)x86-64,forMSWindows
+  - CMakeDetermineCompilerABI_C.bin:PE32+executable(console)x86-64,forMSWindows
+  - CompilerIdC.exe:PE32+executable(console)x86-64,forMSWindows
+  - CompilerIdCXX.exe:PE32+executable(console)x86-64,forMSWindows
+  - feature_tests.bin:PE32+executable(console)x86-64,forMSWindows
+  - FurimukiComp.exe:PE32+executable(console)x86-64,forMSWindows
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 04/
+Title      : ZumoとRaspberryPiを用いた教育用ロボット環境|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_04
+RTCs       : 5
+  - JoyVelRTC.py
+  - JoystickRTC.py
+  - LineTracer.py
+  - ULongSeqInput.py
+  - Zumo.py
+
+Step(all)  :
+  - python:         564 (54.23%)
+  - cpp:            476 (45.77%)
+
+Step(RTC)  :
+  - 564     ZumoComponents  python=564
+  - 238     Zumo-rasp       cpp=238
+  - 238     Zumo-win        cpp=238
+
+Errors     : 0
+
+
+Warnings   : 22
+  - [04/src/Zumo-rasp/SerialPort.h:57]: (portability) Casting from float* to integer* is not portable due to different binary data representations on different platforms.
+  - [04/src/Zumo-rasp/Button.h:7]: (style) The class 'Button' does not have a constructor.
+  - [04/src/Zumo-rasp/Motor.cpp:4]: (warning) Member variable 'Motor::RL' is not initialized in the constructor.
+  - [04/src/Zumo-rasp/Motor.cpp:4]: (warning) Member variable 'Motor::RR' is not initialized in the constructor.
+  - [04/src/Zumo-rasp/SerialPort.cpp:4]: (warning) Member variable 'SerialPort::BufBase' is not initialized in the constructor.
+  - [04/src/Zumo-win/SerialPort.h:57]: (portability) Casting from float* to integer* is not portable due to different binary data representations on different platforms.
+  - [04/src/Zumo-win/Button.h:7]: (style) The class 'Button' does not have a constructor.
+  - [04/src/Zumo-win/Motor.cpp:4]: (warning) Member variable 'Motor::RL' is not initialized in the constructor.
+  - [04/src/Zumo-win/Motor.cpp:4]: (warning) Member variable 'Motor::RR' is not initialized in the constructor.
+  - [04/src/Zumo-win/SerialPort.cpp:4]: (warning) Member variable 'SerialPort::BufBase' is not initialized in the constructor.
+  - [04/src/Zumo-rasp/SerialPort.cpp:36]: (style) The function 'CheckData' is never used.
+  - [04/src/Zumo-rasp/Motor.cpp:22]: (style) The function 'SendSpeed' is never used.
+  - [04/src/Zumo-rasp/Button.cpp:9]: (style) The function 'SendStatus' is never used.
+  - [04/src/Zumo-rasp/Motor.cpp:32]: (style) The function 'SetSpeed' is never used.
+  - 04/src/ZumoComponents/JoyVelRTC.py:13: 'time' imported but unused
+  - 04/src/ZumoComponents/JoyVelRTC.py:337: local variable 'comp' is assigned to but never used
+  - 04/src/ZumoComponents/JoystickRTC.py:13: 'time' imported but unused
+  - 04/src/ZumoComponents/JoystickRTC.py:348: local variable 'comp' is assigned to but never used
+  - 04/src/ZumoComponents/sample/LineTracer.py:13: 'time' imported but unused
+  - 04/src/ZumoComponents/sample/LineTracer.py:292: local variable 'comp' is assigned to but never used
+  - 04/src/ZumoComponents/IO_test/ULongSeqInput.py:51: local variable 'comp' is assigned to but never used
+  - 04/src/ZumoComponents/Zumo.py:538: local variable 'comp' is assigned to but never used
+
+Licenses   : 0
+
+
+Executables: 0
+  [win32]
+
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 05/
+Title      : RaspberryPiと複数台のArduinoDueを用いたアナログ入出力を増設するためのRTC|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_05
+RTCs       : 2
+  - SerialIn.py
+  - SerialOut.py
+
+Step(all)  :
+  - python:         139 (73.54%)
+  - xml:             50 (26.46%)
+
+Step(RTC)  :
+  - 104     SerialIn        python=77,xml=27
+  - 85      SerialOut       python=62,xml=23
+
+Errors     : 0
+
+
+Warnings   : 3
+  - 05/src/SerialIn/SerialIn.py:310: local variable 'comp' is assigned to but never used
+  - 05/src/SerialOut/SerialOut.py:13: 'time' imported but unused
+  - 05/src/SerialOut/SerialOut.py:293: local variable 'comp' is assigned to but never used
+
+Licenses   : 12
+  - 05/src/SerialIn/CMakeLists.txt
+  - 05/src/SerialIn/README.SerialIn
+  - 05/src/SerialIn/COPYING
+  - 05/src/SerialIn/COPYING.LESSER
+  - 05/src/SerialIn/doc/content/index.txt
+  - 05/src/SerialIn/doc/content/index_j.txt
+  - 05/src/SerialOut/CMakeLists.txt
+  - 05/src/SerialOut/README.SerialOut
+  - 05/src/SerialOut/COPYING
+  - 05/src/SerialOut/COPYING.LESSER
+  - 05/src/SerialOut/doc/content/index.txt
+  - 05/src/SerialOut/doc/content/index_j.txt
+
+Executables: 0
+  [win32]
+
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 06/
+Title      : アンケートの入力時間の違いを利用した重みづけ評価RTC|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_06
+RTCs       : 2
+  - utteranceServerComp.cpp
+  - ConciergeRSNP5Comp.java
+
+Step(all)  :
+  - java:           436 (49.77%)
+  - cpp:            360 (41.10%)
+  - xml:             71 (8.11%)
+  - sh:               9 (1.03%)
+
+Step(RTC)  :
+  - 494     ConciergeRSNP5  java=436,xml=49,sh=9
+  - 382     utteranceServer cpp=360,xml=22
+
+Errors     : 2
+  - ConciergeRSNP5.java:51:51 IP: ConciergeRSNP5.deleteRtc(RTObject_impl) へのパラメータ rtcBase は、読み取られずに上書きされています。 (H) 
+  - ConciergeRSNP5.java:51:51 DLS: rtcBase への無効な null 代入です。ConciergeRSNP5.deleteRtc(RTObject_impl) (H) 
+
+Warnings   : 20
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:249]: (style) The scope of the variable 'lasttime' can be reduced.
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:223]: (style) Variable 'thread_id1' is assigned a value that is never used.
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:225]: (style) Variable 'thread_id2' is assigned a value that is never used.
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:222]: (style) Variable 'p_pid' is assigned a value that is never used.
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:224]: (style) Variable 'p_pid2' is assigned a value that is never used.
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:247]: (style) Unused variable: text_send
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:357]: (style) Unused variable: w
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:118]: (warning) Member variable 'utteranceServer::m_SERV_TCP_PORT' is not initialized in the constructor.
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:118]: (warning) Member variable 'utteranceServer::m_th1' is not initialized in the constructor.
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:118]: (warning) Member variable 'utteranceServer::m_th2' is not initialized in the constructor.
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:118]: (warning) Member variable 'utteranceServer::m_th3' is not initialized in the constructor.
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:118]: (warning) Member variable 'utteranceServer::m_th4' is not initialized in the constructor.
+  - [06/src/utteranceServer/utternaceServer/src/utteranceServer.cpp:363]: (portability) scanf without field width limits can crash with huge input data on some versions of libc.
+  - ConciergeRSNP5Comp.java:30:30 Dm: ConciergeRSNP5Comp.myModuleInit(Manager) は、System.exit(...) を呼び出しています。これは Java 仮想マシン全体をシャットダウンさせてしまいます。 (M) 
+  - acceptor/CameraImage.java:33:33 ST: インスタンスメソッド acceptor.CameraImage.loadNext() から static フィールド acceptor.CameraImage.counter に書き込みをしています。 (M) 
+  - acceptor/CameraImage.java:21:21 EI: acceptor.CameraImage.getImage() は、CameraImage.image を返すことによって内部表現を暴露するかもしれません。 (M) 
+  - connector/Connector.java:86:86 DLS: ret への無効な代入です。connector.Connector.push_data(String) (M) 
+  - ConciergeRSNP5Impl.java:182:182 ES: String オブジェクトを == や != を使用して比較しています。ConciergeRSNP5Impl.onExecute(int) (M) 
+  - acceptor/Camera_Distributor_impl.java:-1:-1 UuF: 未使用のフィールド: acceptor.Camera_Distributor_impl.file_directory (M) 
+  - ConciergeRSNP5.java:24:24 MS: ConciergeRSNP5.component_conf は、final かつパッケージプロテクテッドにすべきです。 (M) 
+
+Licenses   : 1
+  - 06/src/ConciergeRSNP5/ConciergeRSNP5/README.ConciergeRSNP
+
+Executables: 1
+  [win32]
+  - utteranceServerComp.exe:PE32executable(console)Intel80386,forMSWindows
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 07/
+Title      : 教育用ロボットアームコンポーネントの開発|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_07
+RTCs       : 3
+  - ChoreonoidCRANEControllerRTCComp.cpp
+  - ManipulatorControlSampleComp.cpp
+  - RT_CRANE_RTCComp.cpp
+
+Step(all)  :
+  - cpp:           3193 (94.16%)
+  - xml:            143 (4.22%)
+  - sh:              55 (1.62%)
+
+Step(RTC)  :
+  - 1667    ChoreonoidCRANEControllerRTC cpp=1596,xml=71
+  - 1343    RT_CRANE_RTC    cpp=1305,xml=38
+  - 326     ManipulatorControlSample cpp=292,xml=34
+
+Errors     : 0
+
+
+Warnings   : 31
+  - [07/src/ChoreonoidCRANEControllerRTC/src/Crane.cpp:745]: (style) The scope of the variable 'z3' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/Crane.cpp:753]: (style) The scope of the variable 'theta3_value' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_CommonSVC_impl.cpp:138]: (style) The scope of the variable 'torque' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_CommonSVC_impl.cpp:153]: (style) The scope of the variable 'torque' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:216]: (warning) Comparison of a boolean with an integer.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:223]: (warning) Comparison of a boolean with an integer.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:285]: (warning) Comparison of a boolean with an integer.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:395]: (warning) Comparison of a boolean with an integer.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:634]: (warning) Comparison of a boolean with an integer.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:52]: (style) The scope of the variable 'x' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:53]: (style) The scope of the variable 'y' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:54]: (style) The scope of the variable 'z' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:55]: (style) The scope of the variable 'Rz' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:58]: (style) The scope of the variable 'JointPos' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:199]: (style) The scope of the variable 'i' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:200]: (style) The scope of the variable 'setfabs' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:203]: (style) The scope of the variable 'nowJointPos' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:322]: (style) The scope of the variable 'i' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:323]: (style) The scope of the variable 'setfabs' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:326]: (style) The scope of the variable 'nowJointPos' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:628]: (style) The scope of the variable 'Judge' can be reduced.
+  - [07/src/RT_CRANE_RTC/src/Crane.cpp:745]: (style) The scope of the variable 'z3' can be reduced.
+  - [07/src/RT_CRANE_RTC/src/Crane.cpp:753]: (style) The scope of the variable 'theta3_value' can be reduced.
+  - [07/src/RT_CRANE_RTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:207]: (warning) Comparison of a boolean with an integer.
+  - [07/src/RT_CRANE_RTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:214]: (warning) Comparison of a boolean with an integer.
+  - [07/src/RT_CRANE_RTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:281]: (warning) Comparison of a boolean with an integer.
+  - [07/src/RT_CRANE_RTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:383]: (warning) Comparison of a boolean with an integer.
+  - [07/src/RT_CRANE_RTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:599]: (warning) Comparison of a boolean with an integer.
+  - [07/src/RT_CRANE_RTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:191]: (style) The scope of the variable 'setfabs' can be reduced.
+  - [07/src/RT_CRANE_RTC/src/ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp:305]: (style) The scope of the variable 'setfabs' can be reduced.
+  - [07/src/ChoreonoidCRANEControllerRTC/src/Crane.cpp:465]: (style) The function 'getCRANESpeeddata' is never used.
+
+Licenses   : 21
+  - 07/src/ChoreonoidCRANEControllerRTC/README.ChoreonoidCRANEControllerRTC
+  - 07/src/ChoreonoidCRANEControllerRTC/COPYING
+  - 07/src/ChoreonoidCRANEControllerRTC/COPYING.LESSER
+  - 07/src/ChoreonoidCRANEControllerRTC/doc/content/index.txt
+  - 07/src/ChoreonoidCRANEControllerRTC/doc/content/index_j.txt
+  - 07/src/ManipulatorControlSample/COPYING
+  - 07/src/ManipulatorControlSample/README.ManipulatorControlSample
+  - 07/src/ManipulatorControlSample/COPYING.LESSER
+  - 07/src/ManipulatorControlSample/doc/content/index.txt
+  - 07/src/ManipulatorControlSample/doc/content/index_j.txt
+  - 07/src/RT_CRANE_RTC/COPYING
+  - 07/src/RT_CRANE_RTC/README.RT_CRANE_RTC
+  - 07/src/RT_CRANE_RTC/COPYING.LESSER
+  - 07/src/RT_CRANE_RTC/doc/content/index.txt
+  - 07/src/RT_CRANE_RTC/doc/content/index_j.txt
+  - 07/util/model_project/CRANE+モデル/iptFile/CRANEJ4.ipt
+  - 07/util/model_project/CRANE+モデル/iptFile/CRANEJ1.ipt
+  - 07/util/model_project/CRANE+モデル/iptFile/CRANEJ2.ipt
+  - 07/util/model_project/CRANE+モデル/iptFile/CRANEHAND.ipt
+  - 07/util/model_project/CRANE+モデル/iptFile/CRANEBASE.ipt
+  - 07/util/model_project/CRANE+モデル/iptFile/CRANEJ3.ipt
+
+Executables: 0
+  [win32]
+
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 08/
+Title      : 移動ロボット開発支援のためのRTコンポーネント群|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_08
+RTCs       : 0
+
+
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     : 0
+
+
+Warnings   : 0
+
+
+Licenses   : 0
+
+
+Executables: 0
+  [win32]
+
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 09/
+Title      : 物体認識系コンポーネント群|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_09
+RTCs       : 0
+
+
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     : 0
+
+
+Warnings   : 0
+
+
+Licenses   : 0
+
+
+Executables: 0
+  [win32]
+
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 10/
+Title      : RTコンポーネントを用いたセンサデータ収集基盤の開発|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_10
+RTCs       : 0
+
+
+Step(all)  :
+
+
+Step(RTC)  :
+
+
+Errors     : 0
+
+
+Warnings   : 0
+
+
+Licenses   : 0
+
+
+Executables: 0
+  [win32]
+
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 11/
+Title      : 教室内の注目度計測RTコンポーネント|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_11
+RTCs       : 1
+  - Attention_degreeComp.cpp
+
+Step(all)  :
+  - cpp:            424 (92.98%)
+  - xml:             32 (7.02%)
+
+Step(RTC)  :
+  - 456     src             cpp=424,xml=32
+
+Errors     : 0
+
+
+Warnings   : 20
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::start_faces' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::total_faces' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::face_average' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::attention_degree' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::range_faces' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::range_faces_total' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::range_faces_average' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::faces' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::n' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::nmax' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::img_h' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::img_w' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::buf_attention' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::filename' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::i' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::m_Image_buff' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::flag' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::m_Attention_degrees' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::m_Voice1_or_Alarm2' is not initialized in the constructor.
+  - [11/src/Attention_degree/src/Attention_degree.cpp:59]: (warning) Member variable 'Attention_degree::m_count_time' is not initialized in the constructor.
+
+Licenses   : 0
+
+
+Executables: 1
+  [win32]
+  - attention_degreecomp.exe:PE32executable(console)Intel80386,forMSWindows
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 12/
+Title      : RTミドルウェア入門用コンポーネント群StarTnoの開発|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_12
+RTCs       : 10
+  - CinComp.cpp
+  - KeyinComp.cpp
+  - CoutComp.cpp
+  - xNComp.cpp
+  - StarTno_01Comp.cpp
+  - 0_StarTno_01Comp.cpp
+  - CinComp.cpp
+  - KeyinComp.cpp
+  - CoutComp.cpp
+  - xNComp.cpp
+
+Step(all)  :
+  - cpp:           2535 (57.92%)
+  - xml:           1842 (42.08%)
+
+Step(RTC)  :
+  - 1561    03_StarTno_03(НьРмТЖ) xml=1561
+  - 698     _1_StarTno_00_source code cpp=543,xml=155
+  - 625     00_StarTno_00_Win10_VisualStudi2015 cpp=532,xml=93
+  - 335     01_StarTno_01   cpp=302,xml=33
+
+Errors     : 0
+
+
+Warnings   : 0
+
+
+Licenses   : 48
+  - 12/src/StarTno_2016_V2.zip
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Cin/COPYING
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Cin/README.Cin
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Cin/COPYING.LESSER
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Cin/doc/content/index.txt
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Cin/doc/content/index_j.txt
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Keyin/README.Keyin
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Keyin/COPYING
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Keyin/COPYING.LESSER
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Keyin/doc/content/index.txt
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Keyin/doc/content/index_j.txt
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Cout/README.Cout
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Cout/COPYING
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Cout/COPYING.LESSER
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Cout/doc/content/index.txt
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/Cout/doc/content/index_j.txt
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/xN/README.xN
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/xN/COPYING
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/xN/COPYING.LESSER
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/xN/doc/content/index_j.txt
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/xN/doc/content/index.txt
+  - 12/src/00_StarTno_00_Win10_VisualStudi2015/_1_StarTno_00_source code/xN/doc/content/index_j.txt
+  - 12/src/01_StarTno_01/_1_StarTno_01_source code/StarTno_01/COPYING
+  - 12/src/01_StarTno_01/_1_StarTno_01_source code/StarTno_01/README.StarTno_
+  - 12/src/01_StarTno_01/_1_StarTno_01_source code/StarTno_01/COPYING.LESSER
+  - 12/src/01_StarTno_01/_1_StarTno_01_source code/StarTno_01/doc/content/index.txt
+  - 12/src/01_StarTno_01/_1_StarTno_01_source code/StarTno_01/doc/content/index_j.txt
+  - 12/src/_1_StarTno_00_source code/Cin/COPYING
+  - 12/src/_1_StarTno_00_source code/Cin/README.Cin
+  - 12/src/_1_StarTno_00_source code/Cin/COPYING.LESSER
+  - 12/src/_1_StarTno_00_source code/Cin/doc/content/index.txt
+  - 12/src/_1_StarTno_00_source code/Cin/doc/content/index_j.txt
+  - 12/src/_1_StarTno_00_source code/Keyin/README.Keyin
+  - 12/src/_1_StarTno_00_source code/Keyin/COPYING
+  - 12/src/_1_StarTno_00_source code/Keyin/COPYING.LESSER
+  - 12/src/_1_StarTno_00_source code/Keyin/doc/content/index.txt
+  - 12/src/_1_StarTno_00_source code/Keyin/doc/content/index_j.txt
+  - 12/src/_1_StarTno_00_source code/Cout/README.Cout
+  - 12/src/_1_StarTno_00_source code/Cout/COPYING
+  - 12/src/_1_StarTno_00_source code/Cout/COPYING.LESSER
+  - 12/src/_1_StarTno_00_source code/Cout/doc/content/index.txt
+  - 12/src/_1_StarTno_00_source code/Cout/doc/content/index_j.txt
+  - 12/src/_1_StarTno_00_source code/xN/README.xN
+  - 12/src/_1_StarTno_00_source code/xN/COPYING
+  - 12/src/_1_StarTno_00_source code/xN/COPYING.LESSER
+  - 12/src/_1_StarTno_00_source code/xN/doc/content/index.txt
+  - 12/src/_1_StarTno_00_source code/xN/doc/content/index_j.txt
+  - 12/util/00_RTno_ArduinoЧpГЙГCГuГЙГК/RTno/license.txt
+
+Executables: 18
+  [win32]
+  - rtcprof.exe:PE32executable(console)Intel80386,forMSWindows
+  - rtcd.exe:PE32executable(console)Intel80386,forMSWindows
+  - 04_xNComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 03_KeyinComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 01_CinComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 02_CoutComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 02_StarTno_01Comp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 01_directinputcomp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 03_RTnoProxyComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 04_xNComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 03_KeyinComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 01_CinComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 02_CoutComp.exe:PE32executable(console)Intel80386,forMSWindows
+  - StarTno_03Comp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 02_StarTno_03Comp.exe:PE32executable(console)Intel80386,forMSWindows
+  - 03_RTnoProxyComp.exe:PE32executable(console)Intel80386,forMSWindows
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
+-----------------------------
+Entry No.  : 13/
+Title      : RTミドルウェアを用いたメディアアート制作およびウェブサイトによる支援|OpenRTM-aist
+URL        : http://www.openrtm.org/openrtm/ja/project/contest2016_13
+RTCs       : 4
+  - AnalogInputComp.cpp
+  - ThresholdSwitchComp.cpp
+  - PWMFluctuationsComp.cpp
+  - LEDStateManagerComp.cpp
+
+Step(all)  :
+  - cpp:            808 (79.29%)
+  - xml:            211 (20.71%)
+
+Step(RTC)  :
+  - 324     LEDStateManager cpp=275,xml=49
+  - 274     ThresholdSwitch cpp=206,xml=68
+  - 264     PWMFluctuations cpp=204,xml=60
+  - 157     AnalogInput     cpp=123,xml=34
+
+Errors     : 0
+
+
+Warnings   : 0
+
+
+Licenses   : 20
+  - 13/src/AnalogInput/README.AnalogInput
+  - 13/src/AnalogInput/COPYING
+  - 13/src/AnalogInput/COPYING.LESSER
+  - 13/src/AnalogInput/doc/content/index.txt
+  - 13/src/AnalogInput/doc/content/index_j.txt
+  - 13/src/ThresholdSwitch/README.ThresholdSwitch
+  - 13/src/ThresholdSwitch/COPYING
+  - 13/src/ThresholdSwitch/COPYING.LESSER
+  - 13/src/ThresholdSwitch/doc/content/index.txt
+  - 13/src/ThresholdSwitch/doc/content/index_j.txt
+  - 13/src/PWMFluctuations/README.PWMFluctuations
+  - 13/src/PWMFluctuations/COPYING
+  - 13/src/PWMFluctuations/COPYING.LESSER
+  - 13/src/PWMFluctuations/doc/content/index.txt
+  - 13/src/PWMFluctuations/doc/content/index_j.txt
+  - 13/src/LEDStateManager/COPYING
+  - 13/src/LEDStateManager/COPYING.LESSER
+  - 13/src/LEDStateManager/doc/content/index.txt
+  - 13/src/LEDStateManager/doc/content/index_j.txt
+  - 13/src/LEDStateManager/README.LEDStateManager
+
+Executables: 0
+  [win32]
+
+  [win64]
+
+  [linux32]
+
+  [linux64]
+
+
+-----------------------------
