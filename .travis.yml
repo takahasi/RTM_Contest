@@ -1,0 +1,12 @@
+language: cpp
+sudo: required
+compiler:
+  - gcc
+os:
+  - linux
+dist: trusty
+before_install:
+    - sudo apt-get -qq update
+    - sudo apt-get install -y --force-yes sloccount cppcheck egrep pyflakes findbugs
+script:
+  - ./scripts/get_all_contents.sh
