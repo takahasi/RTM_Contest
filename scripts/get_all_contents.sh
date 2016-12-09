@@ -480,7 +480,12 @@ function get_project_09()
   local project_util=$project/util
 
   # get source code
+  _git_clone https://github.com/rsdlab/ObjectSensor_cpu $project_src
+  mv $project_src/ObjectSensor_cpu/* $project_src/
+
   # get documents
+  mv $project_src/*.pdf $project_doc/
+
   # get utility tools
 
   return 0
