@@ -202,39 +202,58 @@ function analyse_project()
 function generate_project_summary()
 {
   cat << EOS
------------------------------
-Entry No.  : $1/
-Title      : `cat $1/title.txt`
-URL        : `cat $1/url.txt`
-RTCs       : `cat $1/rtc.txt | wc -l`
+
+Entry No.  : $1
+===============
+
+Title
+-----
+`cat $1/title.txt`
+
+URL
+---
+`cat $1/url.txt`
+
+RTCs
+----
+`cat $1/rtc.txt | wc -l` components
 `cat $1/rtc.txt | sed 's/^/  - /'`
 
-Step(all)  :
+Step(all)
+---------
 `cat $1/stepcount_all.txt | sed 's/^/  - /'`
 
-Step(RTC)  :
+Step(RTC)
+---------
 `cat $1/stepcount_rtc.txt | sed 's/^/  - /'`
 
-Errors     : `cat $1/errors.txt | wc -l`
+Errors
+------
+`cat $1/errors.txt | wc -l` errors
 `cat $1/errors.txt | sed 's/^/  - /'`
 
-Warnings   : `cat $1/warnings.txt | wc -l`
+Warnings
+--------
+`cat $1/warnings.txt | wc -l` wrnings
   please check $1/warnings.txt
 
-Licenses   : `cat $1/licenses.txt | wc -l`
+Licenses
+--------
+`cat $1/licenses.txt | wc -l` licences
   please check $1/licenses.txt
 
-Executables: `cat $1/executables.txt | wc -l`
-  [win32]
+Executables
+-----------
+`cat $1/executables.txt | wc -l` executables
+"win32"
 `cat $1/executables.txt | egrep -i "windows" | egrep -i "386" | cut -d: -f1 | sed 's/^/  - /'`
-  [win64]
+"win64"
 `cat $1/executables.txt | egrep -i "windows" | egrep -i "x86-64" | cut -d: -f1 | sed 's/^/  - /'`
-  [linux32]
+"linux32"
 `cat $1/executables.txt | egrep -i "linux" | egrep -i "32-bit" | cut -d: -f1 | sed 's/^/  - /'`
-  [linux64]
+"linux64"
 `cat $1/executables.txt | egrep -i "linux" | egrep -i "64-bit" | cut -d: -f1 | sed 's/^/  - /'`
-
------------------------------
+---
 EOS
 
   return 0
@@ -244,39 +263,58 @@ EOS
 function generate_project_report()
 {
   cat << EOS
------------------------------
-Entry No.  : $1/
-Title      : `cat $1/title.txt`
-URL        : `cat $1/url.txt`
-RTCs       : `cat $1/rtc.txt | wc -l`
+
+Entry No.  : $1
+===============
+
+Title
+-----
+`cat $1/title.txt`
+
+URL
+---
+`cat $1/url.txt`
+
+RTCs
+----
+`cat $1/rtc.txt | wc -l` components
 `cat $1/rtc.txt | sed 's/^/  - /'`
 
-Step(all)  :
+Step(all)
+---------
 `cat $1/stepcount_all.txt | sed 's/^/  - /'`
 
-Step(RTC)  :
+Step(RTC)
+---------
 `cat $1/stepcount_rtc.txt | sed 's/^/  - /'`
 
-Errors     : `cat $1/errors.txt | wc -l`
+Errors
+------
+`cat $1/errors.txt | wc -l` errors
 `cat $1/errors.txt | sed 's/^/  - /'`
 
-Warnings   : `cat $1/warnings.txt | wc -l`
+Warnings
+--------
+`cat $1/warnings.txt | wc -l` warnings
 `cat $1/warnings.txt | sed 's/^/  - /'`
 
-Licenses   : `cat $1/licenses.txt | wc -l`
+Licenses
+--------
+`cat $1/licenses.txt | wc -l` licenses
 `cat $1/licenses.txt | sed 's/^/  - /'`
 
-Executables: `cat $1/executables.txt | wc -l`
-  [win32]
+Executables
+-----------
+`cat $1/executables.txt | wc -l` executables
+"win32"
 `cat $1/executables.txt | egrep -i "windows" | egrep -i "386" | sed 's/^/  - /'`
-  [win64]
+"win64"
 `cat $1/executables.txt | egrep -i "windows" | egrep -i "x86-64" | sed 's/^/  - /'`
-  [linux32]
+"linux32"
 `cat $1/executables.txt | egrep -i "linux" | egrep -i "32-bit" | sed 's/^/  - /'`
-  [linux64]
+"linux64"
 `cat $1/executables.txt | egrep -i "linux" | egrep -i "64-bit" | sed 's/^/  - /'`
-
------------------------------
+---
 EOS
 
   return 0
@@ -466,8 +504,14 @@ function get_project_08()
   local project_util=$project/util
 
   # get source code
+  _git_clone https://github.com/rsdlab/Kobuki_simulation $project_src
+  mv $project_src/Kobuki_simulation/* $project_src/
+
   # get documents
+  mv $project_src/Documents $project_doc/
+
   # get utility tools
+  _git_clone https://github.com/rsdlab/MRNF_Installer $project_util
 
   return 0
 }
