@@ -482,12 +482,12 @@ RTCs
 
 Step(all)
 ---------
-  - cpp:            952 (59.84%)
-  - python:         639 (40.16%)
+  - cpp:            952 (61.62%)
+  - python:         593 (38.38%)
 
 Step(RTC)
 ---------
-  - 639     ZumoComponents  python=639
+  - 593     ZumoComponents  python=593
   - 238     Zumo-GPIO       cpp=238
   - 238     Zumo-USB        cpp=238
   - 238     Zumo-rasp       cpp=238
@@ -500,7 +500,7 @@ Errors
 
 Warnings
 --------
-33 warnings
+32 warnings
   - [04/src/Zumo-GPIO/SerialPort.h:57]: (portability) Casting from float* to integer* is not portable due to different binary data representations on different platforms.
   - [04/src/Zumo-GPIO/Button.h:7]: (style) The class 'Button' does not have a constructor.
   - [04/src/Zumo-GPIO/Motor.cpp:4]: (warning) Member variable 'Motor::RL' is not initialized in the constructor.
@@ -530,8 +530,7 @@ Warnings
   - 04/src/ZumoComponents/JoystickRTC.py:13: 'time' imported but unused
   - 04/src/ZumoComponents/JoystickRTC.py:348: local variable 'comp' is assigned to but never used
   - 04/src/ZumoComponents/sample/LineTracer.py:13: 'time' imported but unused
-  - 04/src/ZumoComponents/sample/LineTracer.py:316: local variable 'va_weight' is assigned to but never used
-  - 04/src/ZumoComponents/sample/LineTracer.py:412: local variable 'comp' is assigned to but never used
+  - 04/src/ZumoComponents/sample/LineTracer.py:344: local variable 'comp' is assigned to but never used
   - 04/src/ZumoComponents/IO_test/ULongSeqInput.py:51: local variable 'comp' is assigned to but never used
   - 04/src/ZumoComponents/Zumo.py:556: local variable 'comp' is assigned to but never used
 
@@ -1300,16 +1299,24 @@ http://www.openrtm.org/openrtm/ja/project/contest2016_10
 
 RTCs
 ----
-0 components
-
+5 components
+  - testNavio.py
+  - testNavio_org.py
+  - kobukiMongoInsert.py
+  - kinectMongoInsert.py
+  - kinectInsert.py
 
 Step(all)
 ---------
-
+  - python:         748 (85.98%)
+  - xml:            122 (14.02%)
 
 Step(RTC)
 ---------
-
+  - 466     testNavio       python=427,xml=39
+  - 156     KobukiMongoAccess python=119,xml=37
+  - 147     kinectInsert    python=123,xml=24
+  - 101     kinectMongoInsert python=79,xml=22
 
 Errors
 ------
@@ -1318,13 +1325,64 @@ Errors
 
 Warnings
 --------
-0 warnings
-
+24 warnings
+  - 10/src/testNavio/testNavio/testNavio.py:13: 'time' imported but unused
+  - 10/src/testNavio/testNavio/testNavio.py:350: redefinition of unused 'testNavioInit' from line 344
+  - 10/src/testNavio/testNavio/testNavio.py:360: local variable 'comp' is assigned to but never used
+  - 10/src/testNavio/testNavio/testNavio_org.py:13: 'time' imported but unused
+  - 10/src/testNavio/testNavio/testNavio_org.py:14: 'os' imported but unused
+  - 10/src/testNavio/testNavio/testNavio_org.py:190: undefined name 'pymongo'
+  - 10/src/testNavio/testNavio/testNavio_org.py:223: undefined name 'datetime'
+  - 10/src/testNavio/testNavio/testNavio_org.py:226: local variable 'tmp1' is assigned to but never used
+  - 10/src/testNavio/testNavio/testNavio_org.py:231: local variable 'tmp2' is assigned to but never used
+  - 10/src/testNavio/testNavio/testNavio_org.py:236: local variable 'tmp3' is assigned to but never used
+  - 10/src/testNavio/testNavio/testNavio_org.py:241: local variable 'tmp4' is assigned to but never used
+  - 10/src/testNavio/testNavio/testNavio_org.py:242: local variable 'isDataIn' is assigned to but never used
+  - 10/src/testNavio/testNavio/testNavio_org.py:341: local variable 'comp' is assigned to but never used
+  - 10/src/KobukiMongoAccess/kobukiMongoInsert.py:13: 'time' imported but unused
+  - 10/src/KobukiMongoAccess/kobukiMongoInsert.py:359: local variable 'comp' is assigned to but never used
+  - 10/src/kinectMongoInsert/kinectMongoInsert/kinectMongoInsert.py:13: 'time' imported but unused
+  - 10/src/kinectMongoInsert/kinectMongoInsert/kinectMongoInsert.py:20: 'np' imported but unused
+  - 10/src/kinectMongoInsert/kinectMongoInsert/kinectMongoInsert.py:135: local variable 'comp' is assigned to but never used
+  - 10/src/kinectInsert/kinectInsert.py:13: 'from pykinect2.PyKinectV2 import *' used; unable to detect undefined names
+  - 10/src/kinectInsert/kinectInsert.py:17: '_ctypes' imported but unused
+  - 10/src/kinectInsert/kinectInsert.py:27: 'np' imported but unused
+  - 10/src/kinectInsert/kinectInsert.py:32: 'thread' imported but unused
+  - 10/src/kinectInsert/kinectInsert.py:134: local variable 'frame' is assigned to but never used
+  - 10/src/kinectInsert/kinectInsert.py:201: local variable 'comp' is assigned to but never used
 
 Licenses
 --------
-0 licenses
-
+29 licenses
+  - 10/src/testNavio/testNavio/CMakeLists.txt
+  - 10/src/testNavio/testNavio/README.testNavio
+  - 10/src/testNavio/testNavio/COPYING
+  - 10/src/testNavio/testNavio/README.testNavio
+  - 10/src/testNavio/testNavio/COPYING.LESSER
+  - 10/src/testNavio/testNavio/doc/content/index.txt
+  - 10/src/testNavio/testNavio/doc/content/index_j.txt
+  - 10/src/testNavio/testNavio/doc/content/index.txt
+  - 10/src/testNavio/testNavio/doc/content/index_j.txt
+  - 10/src/testNavio/testNavio/README.testNavio
+  - 10/src/KobukiMongoAccess/CMakeLists.txt
+  - 10/src/KobukiMongoAccess/COPYING
+  - 10/src/KobukiMongoAccess/README.kobukiMongoInsert
+  - 10/src/KobukiMongoAccess/COPYING.LESSER
+  - 10/src/KobukiMongoAccess/doc/content/index.txt
+  - 10/src/KobukiMongoAccess/doc/content/index_j.txt
+  - 10/src/kinectMongoInsert/kinectMongoInsert/README.kinectMongoInsert
+  - 10/src/kinectMongoInsert/kinectMongoInsert/CMakeLists.txt
+  - 10/src/kinectMongoInsert/kinectMongoInsert/COPYING
+  - 10/src/kinectMongoInsert/kinectMongoInsert/COPYING.LESSER
+  - 10/src/kinectMongoInsert/kinectMongoInsert/doc/content/index.txt
+  - 10/src/kinectMongoInsert/kinectMongoInsert/doc/content/index_j.txt
+  - 10/src/kinectInsert/README.kinectInsert
+  - 10/src/kinectInsert/CMakeLists.txt
+  - 10/src/kinectInsert/COPYING
+  - 10/src/kinectInsert/COPYING.LESSER
+  - 10/src/kinectInsert/doc/content/index.txt
+  - 10/src/kinectInsert/doc/content/index_j.txt
+  - 10/src/RTC_0.zip
 
 Executables
 -----------

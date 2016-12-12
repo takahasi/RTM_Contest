@@ -265,12 +265,12 @@ RTCs
 
 Step(all)
 ---------
-  - cpp:            952 (59.84%)
-  - python:         639 (40.16%)
+  - cpp:            952 (61.62%)
+  - python:         593 (38.38%)
 
 Step(RTC)
 ---------
-  - 639     ZumoComponents  python=639
+  - 593     ZumoComponents  python=593
   - 238     Zumo-GPIO       cpp=238
   - 238     Zumo-USB        cpp=238
   - 238     Zumo-rasp       cpp=238
@@ -283,7 +283,7 @@ Errors
 
 Warnings
 --------
-33 wrnings
+32 wrnings
   please check 04/warnings.txt
 
 Licenses
@@ -611,16 +611,24 @@ http://www.openrtm.org/openrtm/ja/project/contest2016_10
 
 RTCs
 ----
-0 components
-
+5 components
+  - testNavio.py
+  - testNavio_org.py
+  - kobukiMongoInsert.py
+  - kinectMongoInsert.py
+  - kinectInsert.py
 
 Step(all)
 ---------
-
+  - python:         748 (85.98%)
+  - xml:            122 (14.02%)
 
 Step(RTC)
 ---------
-
+  - 466     testNavio       python=427,xml=39
+  - 156     KobukiMongoAccess python=119,xml=37
+  - 147     kinectInsert    python=123,xml=24
+  - 101     kinectMongoInsert python=79,xml=22
 
 Errors
 ------
@@ -629,12 +637,12 @@ Errors
 
 Warnings
 --------
-0 wrnings
+24 wrnings
   please check 10/warnings.txt
 
 Licenses
 --------
-0 licences
+29 licences
   please check 10/licenses.txt
 
 Executables

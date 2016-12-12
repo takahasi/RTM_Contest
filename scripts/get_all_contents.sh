@@ -543,7 +543,13 @@ function get_project_10()
   local project_util=$project/util
 
   # get source code
+  _wget http://www.openrtm.org/openrtm/sites/default/files/6130/RTC_0.zip $project_src
+  unzip $project_src/RTC_0.zip -d $project_src/
+  mv $project_src/RTC/* $project_src/
+
   # get documents
+
+
   # get utility tools
 
   return 0
