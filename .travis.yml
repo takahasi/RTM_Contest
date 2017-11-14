@@ -9,4 +9,5 @@ before_install:
     - sudo apt-get -qq update
     - sudo apt-get install -y --force-yes sloccount cppcheck grep pyflakes findbugs
 script:
-  - ./scripts/get_all_contents.sh
+  - ./scripts/2016/get_all_contents.sh
+  - ./scripts/2017/get_all_contents.sh
