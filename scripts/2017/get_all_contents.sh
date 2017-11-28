@@ -198,64 +198,26 @@ function analyse_project()
   return 0
 }
 
+# generate project summary header
+function generate_project_summary_header()
+{
+  cat << EOS
+SUMMARY
+=======
+
+|No.|Title|URL|# of component|step|# of errors|# of warnings|# of licences|# of executables|
+|---|-----|---|--------------|----|-----------|-------------|-------------|----------------|
+EOS
+
+  return 0
+}
+
 # generate project summary
 function generate_project_summary()
 {
   cat << EOS
-Entry No.  : $1
-===============
-
-Title
------
-`cat $1/title.txt`
-
-URL
----
-<`cat $1/url.txt`>
-
-RTCs
-----
-`cat $1/rtc.txt | wc -l` components  
-`cat $1/rtc.txt | sed 's/^/  - /'`
-
-Step(all)
----------
-`cat $1/stepcount_all.txt | sed 's/^/  - /'`
-
-Step(RTC)
----------
-`cat $1/stepcount_rtc.txt | sed 's/^/  - /'`
-
-Errors
-------
-`cat $1/errors.txt | wc -l` errors  
-`cat $1/errors.txt | sed 's/^/  - /'`
-
-Warnings
---------
-`cat $1/warnings.txt | wc -l` wrnings  
-  please check $1/warnings.txt
-
-Licenses
---------
-`cat $1/licenses.txt | wc -l` licences  
-  please check $1/licenses.txt
-
-Executables
------------
-`cat $1/executables.txt | wc -l` executables  
-- win32  
-`cat $1/executables.txt | egrep -i "windows" | egrep -i "386" | cut -d: -f1 | sed 's/^/  - /'`  
-- win64  
-`cat $1/executables.txt | egrep -i "windows" | egrep -i "x86-64" | cut -d: -f1 | sed 's/^/  - /'`  
-- linux32  
-`cat $1/executables.txt | egrep -i "linux" | egrep -i "32-bit" | cut -d: -f1 | sed 's/^/  - /'`  
-- linux64  
-`cat $1/executables.txt | egrep -i "linux" | egrep -i "64-bit" | cut -d: -f1 | sed 's/^/  - /'`  
-
-
----
-
+|$1|`cat $1/title.txt`|<`cat $1/url.txt`>|`cat $1/rtc.txt | wc -l` components|`cat $1/stepcount_all.txt | sed 's/^/  - /'`step|`cat $1/errors.txt | wc -l` errors|`cat $1/warnings.txt | wc -l` warnings|`cat $1/licenses.txt | wc -l` licences|`cat $1/executables.txt | wc -l` executables|
+|---|-----|---|--------------|----|-----------|-------------|-------------|----------------|
 EOS
 
   return 0
@@ -383,6 +345,8 @@ function get_project_03()
   local project_util=$project/util
 
   # get source code
+  _git_clone https://github.com/rsdlab/WebCamera $project_src
+  _git_clone https://github.com/rsdlab/ImageViewer $project_src
 
   # get documents
 
@@ -543,8 +507,11 @@ do
   analyse_project $i
 done
 
-cat */summary.txt > summary_`date +%Y%m%d`.md
-cat */report.txt > report_`date +%Y%m%d`.md
+report="report_`date +%Y%m%d`.md"
+generate_project_summary_header > $report
+cat */summary.txt >> $report
+echo "" >> $report
+cat */report.txt >> $report
 
 echo ""
 echo "Completed $i projects"
