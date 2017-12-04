@@ -216,8 +216,7 @@ EOS
 function generate_project_summary()
 {
   cat << EOS
-|$1|`cat $1/title.txt`|<`cat $1/url.txt`>|`cat $1/rtc.txt | wc -l` components|`cat $1/stepcount_all.txt | sed 's/^/  - /'`step|`cat $1/errors.txt | wc -l` errors|`cat $1/warnings.txt | wc -l` warnings|`cat $1/licenses.txt | wc -l` licences|`cat $1/executables.txt | wc -l` executables|
-|---|-----|---|--------------|----|-----------|-------------|-------------|----------------|
+|$1|`cat $1/title.txt`|<`cat $1/url.txt`>|`cat $1/rtc.txt | wc -l`|`head -n1 $1/stepcount_all.txt`|`cat $1/errors.txt | wc -l`|`cat $1/warnings.txt | wc -l`|`cat $1/licenses.txt | wc -l`|`cat $1/executables.txt | wc -l`|
 EOS
 
   return 0
@@ -329,8 +328,13 @@ function get_project_02()
   local project_util=$project/util
 
   # get source code
+  _wget http://www.sic.shibaura-it.ac.jp/~md17067/RTMC2017/PhotographyRobot2017.zip $project_src
+  unzip $project_src/PhotographyRobot2017.zip
+  _wget http://www.sic.shibaura-it.ac.jp/~md17067/RTMC2017/bat_file.zip $project_src
+  unzip $project_src/bat_file.zip
 
   # get documents
+  http://www.sic.shibaura-it.ac.jp/~md17067/RTMC2017/contest2017_02_summary.pdf
 
   # get utility tools
 
@@ -345,10 +349,13 @@ function get_project_03()
   local project_util=$project/util
 
   # get source code
+  _git_clone https://github.com/rsdlab/py_faster_rcnnRTC $project_src
   _git_clone https://github.com/rsdlab/WebCamera $project_src
   _git_clone https://github.com/rsdlab/ImageViewer $project_src
+  _git_clone https://github.com/rsdlab/Show_ObjectParam $project_src
 
   # get documents
+  _wget https://github.com/rsdlab/py_faster_rcnnRTC/blob/master/%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E7%89%A9%E4%BD%93%E8%AA%8D%E8%AD%98%E3%82%B3%E3%83%B3%E3%83%9B%E3%82%9A%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E7%BE%A4.pdf $project_doc
 
   # get utility tools
 
@@ -434,6 +441,8 @@ function get_project_08()
 
   # get documents
   _wget http://openrtm.org/openrtm/sites/default/files/Slide_contest2017_08.pdf $project_doc
+  _wget https://github.com/Konan-Robot-Koubou/SI2017/blob/master/Manual_SI2017_Zumo.pdf $project_doc
+  _wget https://github.com/Konan-Robot-Koubou/SI2017/blob/master/Manual_SI2017_pi2go.pdf $project_doc
 
   # get utility tools
 
@@ -465,6 +474,7 @@ function get_project_10()
 
   # get source code
   _git_clone https://github.com/takahasi/docker-openrtm $project_src
+  _git_clone https://github.com/takahasi/docker-openrtm-tools $project_src
 
   # get documents
 
