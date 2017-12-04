@@ -329,9 +329,9 @@ function get_project_02()
 
   # get source code
   _wget http://www.sic.shibaura-it.ac.jp/~md17067/RTMC2017/PhotographyRobot2017.zip $project_src
-  unzip $project_src/PhotographyRobot2017.zip
+  (cd $project_src && unzip PhotographyRobot2017.zip)
   _wget http://www.sic.shibaura-it.ac.jp/~md17067/RTMC2017/bat_file.zip $project_src
-  unzip $project_src/bat_file.zip
+  (cd $project_src && unzip bat_file.zip)
 
   # get documents
   http://www.sic.shibaura-it.ac.jp/~md17067/RTMC2017/contest2017_02_summary.pdf
