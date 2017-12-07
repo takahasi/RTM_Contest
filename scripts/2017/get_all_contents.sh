@@ -205,8 +205,8 @@ function generate_project_summary_header()
 SUMMARY
 =======
 
-|No.|Title|URL|# of component|step|# of errors|# of warnings|# of licences|# of executables|
-|---|-----|---|--------------|----|-----------|-------------|-------------|----------------|
+|No.|Title|RTCs|Code|Errors|Warnings|Licences|Executables|
+|---|-----|----|----|------|--------|--------|-----------|
 EOS
 
   return 0
@@ -216,7 +216,7 @@ EOS
 function generate_project_summary()
 {
   cat << EOS
-|$1|`cat $1/title.txt`|<`cat $1/url.txt`>|`cat $1/rtc.txt | wc -l`|`head -n1 $1/stepcount_all.txt`|`cat $1/errors.txt | wc -l`|`cat $1/warnings.txt | wc -l`|`cat $1/licenses.txt | wc -l`|`cat $1/executables.txt | wc -l`|
+|$1|[`cat $1/title.txt | sed -e 's/|.*//' | tr -d '\t'`](`cat $1/url.txt`)|`cat $1/rtc.txt | wc -l`|`head -n1 $1/stepcount_all.txt | tr -d ' '`|`cat $1/errors.txt | wc -l`|`cat $1/warnings.txt | wc -l`|`cat $1/licenses.txt | wc -l`|`cat $1/executables.txt | wc -l`|
 EOS
 
   return 0
@@ -231,7 +231,7 @@ Entry No.  : $1
 
 Title
 -----
-`cat $1/title.txt`
+`cat $1/title.txt | sed 's/|.*//' | tr -d '\t'`
 
 URL
 ---
@@ -312,8 +312,13 @@ function get_project_01()
   local project_util=$project/util
 
   # get source code
+  _git_clone https://github.com/MasutaniLab/robot-programming-manager $project_src
 
   # get document
+  cp $project_src/robot-programming-manager/RPMspecification.md $project_doc
+  cp $project_src/robot-programming-manager/config.md $project_doc
+  cp $project_src/robot-programming-manager/sample1.md $project_doc
+  cp $project_src/robot-programming-manager/sample2.md $project_doc
 
   # get utility tools
 
@@ -370,12 +375,14 @@ function get_project_04()
   local project_util=$project/util
 
   # get source code
+  _git_clone https://github.com/rsdlab/AVSdeviceSDKWrapper $project_src
 
   # get documents
+  _wget https://github.com/rsdlab/AVSdeviceSDKWrapper/blob/master/AVSdeviceSDKWrapper%20RTC.pdf $project_doc
 
   # get utility tools
 
-  return 1
+  return 0
 }
 
 function get_project_05()
@@ -386,6 +393,8 @@ function get_project_05()
   local project_util=$project/util
 
   # get source code
+  _wget http://www.sic.shibaura-it.ac.jp/~ab13076/RTMC2017/contest2017_05.html/Data_Transfer.zip $project_src
+  (cd $project_src && unzip Data_Transfer.zip)
 
   # get documents
   _wget www.sic.shibaura-it.ac.jp/~ab13076/contest2017_gaiyou.pdf $project_doc
@@ -404,6 +413,8 @@ function get_project_06()
 
   # get source code
   _git_clone https://github.com/Nobu19800/OpenRTMPythonPlugin $project_src
+  wget https://drive.google.com/a/nobu777.net/uc?authuser=0&id=1EA9LEduA1mVAoPbyL4IFQ5k8L61TxQux&export=download -O $project_src/exe.zip
+  (cd $project_src && unzp exe.zip)
 
   # get documents
   _wget https://github.com/Nobu19800/OpenRTMPythonPlugin/wiki $project_doc
@@ -421,8 +432,11 @@ function get_project_07()
   local project_util=$project/util
 
   # get source code
+  _wget http://www.sic.shibaura-it.ac.jp/~ab14105/RTMC2017/RTC_iWs09.zip $project_src
+  (cd $project_src && RTC_iWs09.zip)
 
   # get documents
+  _wget http://www.sic.shibaura-it.ac.jp/~ab14105/RTMC2017/contest_07_manual.pdf $project_doc
 
   # get utility tools
 
