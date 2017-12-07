@@ -67,7 +67,7 @@ function get_project_title()
   if [ -d $1 ]; then
     local base_url=http://www.openrtm.org/openrtm/ja/project/contest2017
     echo ${base_url}_$1 > $1/url.txt
-    wget ${base_url}_$1 -O - | egrep "<title>.*</title>" | sed -e "s/<[^>]*>//g" | sed -e "s/ //g" > $1/title.txt
+    wget ${base_url}_$1 -O - | egrep "<title>.*</title>" | sed -e "s/<[^>]*>//g" -e "s/ //g" -e "s/|.*//g" | tr -d '\t'> $1/title.txt
   fi
 
   return 0
@@ -98,7 +98,7 @@ function count_source_code_all()
 {
   if [ -d $1 ]; then
     sloccount --duplicates --wide $1 > $1/sloccount_all.txt
-    egrep "%" $1/sloccount_all.txt
+    egrep "%" $1/sloccount_all.txt | tr -d ' '
   fi
 
   return 0
@@ -216,7 +216,7 @@ EOS
 function generate_project_summary()
 {
   cat << EOS
-|$1|[`cat $1/title.txt | sed -e 's/|.*//' | tr -d '\t'`](`cat $1/url.txt`)|`cat $1/rtc.txt | wc -l`|`head -n1 $1/stepcount_all.txt | tr -d ' '`|`cat $1/errors.txt | wc -l`|`cat $1/warnings.txt | wc -l`|`cat $1/licenses.txt | wc -l`|`cat $1/executables.txt | wc -l`|
+|[$1](#$1)|[`cat $1/title.txt`](`cat $1/url.txt`)|`cat $1/rtc.txt | wc -l`|`cat $1/stepcount_all.txt | tr '\n' '/' | sed -e "s/\//<br>/g"`|`cat $1/errors.txt | wc -l`|`cat $1/warnings.txt | wc -l`|`cat $1/licenses.txt | wc -l`|`cat $1/executables.txt | wc -l`|
 EOS
 
   return 0
@@ -226,6 +226,7 @@ EOS
 function generate_project_report()
 {
   cat << EOS
+<a name="$1">
 Entry No.  : $1
 ===============
 
@@ -433,7 +434,7 @@ function get_project_07()
 
   # get source code
   _wget http://www.sic.shibaura-it.ac.jp/~ab14105/RTMC2017/RTC_iWs09.zip $project_src
-  (cd $project_src && RTC_iWs09.zip)
+  (cd $project_src && unzip RTC_iWs09.zip)
 
   # get documents
   _wget http://www.sic.shibaura-it.ac.jp/~ab14105/RTMC2017/contest_07_manual.pdf $project_doc
