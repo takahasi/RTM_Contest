@@ -9,7 +9,7 @@ set -u
 ####################
 # readonly XXX="xxx"
 readonly num_of_entry=10
-readonly required_packages=(git wget sloccount cppcheck egrep pyflakes findbugs)
+readonly required_packages=(git wget sloccount cppcheck egrep pyflakes findbugs cloc)
 
 ####################
 # GLOBAL VARIABLES #
@@ -108,7 +108,7 @@ function count_source_code_all()
 function count_source_code_cloc()
 {
   if [ -d $1 ]; then
-    cloc --quiet $1/src/ | sed -e '1,2d' > $1/sloccount_cloc.txt
+    cloc --quiet $1/src/ | sed -e '1,2d'
   fi
 
   return 0
