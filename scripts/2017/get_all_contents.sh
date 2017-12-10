@@ -108,7 +108,8 @@ function count_source_code_all()
 function count_source_code_cloc()
 {
   if [ -d $1 ]; then
-    cloc --quiet $1/src/ | sed -e '1,2d'
+    cloc --quiet --csv $1/src/ | sed -e '1d' -e 's/,"http.*//g' > $1/sloccount_cloc.csv
+    csv2md $1/sloccount_cloc.csv
   fi
 
   return 0
