@@ -105,11 +105,10 @@ function count_source_code_all()
 }
 
 # count step of RTC source code
-function count_source_code_rtcs()
+function count_source_code_cloc()
 {
   if [ -d $1 ]; then
-    sloccount --duplicates --wide $1/src > $1/sloccount_rtc.txt
-    egrep -v "%" $1/sloccount_rtc.txt | egrep "cpp=|java=|python=|xml=|sh=|%"
+    cloc --quiet $1/src/ | sed -e '1,2d' > $1/sloccount_cloc.txt
   fi
 
   return 0
@@ -140,7 +139,7 @@ function analyse_project()
   touch $1/warnings.txt
   touch $1/rtc.txt
   touch $1/stepcount_all.txt
-  touch $1/stepcount_rtc.txt
+  touch $1/stepcount_cloc.txt
   touch $1/licenses.txt
   touch $1/executables.txt
 
@@ -149,7 +148,7 @@ function analyse_project()
 
     # step count
     count_source_code_all $1 > $1/stepcount_all.txt
-    count_source_code_rtcs $1 > $1/stepcount_rtc.txt
+    count_source_code_cloc $1 > $1/stepcount_cloc.txt
 
     # static analysis for C/C++
     find $1/src \( -name "*.c" -o -name "*.cpp" \) -print | egrep -v "idl" > $1/filelist_cpp.txt
@@ -202,6 +201,8 @@ function analyse_project()
 function generate_project_summary_header()
 {
   cat << EOS
+<a name="summary">
+
 SUMMARY
 =======
 
@@ -227,6 +228,7 @@ function generate_project_report()
 {
   cat << EOS
 <a name="$1">
+
 Entry No.  : $1
 ===============
 
@@ -243,13 +245,11 @@ RTCs
 `cat $1/rtc.txt | wc -l` components  
 `cat $1/rtc.txt | sed 's/^/  - /'`
 
-Step(all)
----------
+Line of Code
+------------
 `cat $1/stepcount_all.txt | sed 's/^/  - /'`
 
-Step(RTC)
----------
-`cat $1/stepcount_rtc.txt | sed 's/^/  - /'`
+`cat $1/stepcount_cloc.txt`
 
 Errors
 ------
@@ -278,6 +278,7 @@ Executables
 - linux64  
 `cat $1/executables.txt | egrep -i "linux" | egrep -i "64-bit" | sed 's/^/  - /'`  
 
+[Back to summary](#summary)
 
 ---
 
