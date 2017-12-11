@@ -115,6 +115,14 @@ function count_source_code_cloc()
   return 0
 }
 
+function count_source_code_comment_rate()
+{
+  local comment=`cloc --quiet --xml $1/src/ | sed -e '1d'| xmllint --xpath "//results/languages/total/@comment" -| sed 's/[^"]*"\([^"]*\)"[^"]*/\1/g'`
+  local code=`cloc --quiet --xml $1/src/ | sed -e '1d'| xmllint --xpath "//results/languages/total/@code" -| sed 's/[^"]*"\([^"]*\)"[^"]*/\1/g'`
+
+  echo "scale=2; $comment / $code * 100" | bc
+}
+
 # search project executables
 function get_project_executables()
 {
@@ -141,6 +149,7 @@ function analyse_project()
   touch $1/rtc.txt
   touch $1/stepcount_all.txt
   touch $1/stepcount_cloc.txt
+  touch $1/stepcount_comment_rate.txt
   touch $1/licenses.txt
   touch $1/executables.txt
 
@@ -150,6 +159,7 @@ function analyse_project()
     # step count
     count_source_code_all $1 > $1/stepcount_all.txt
     count_source_code_cloc $1 > $1/stepcount_cloc.txt
+    count_source_code_comment_rate $1 > $1/stepcount_comment_rate.txt
 
     # static analysis for C/C++
     find $1/src \( -name "*.c" -o -name "*.cpp" \) -print | egrep -v "idl" > $1/filelist_cpp.txt
@@ -207,8 +217,8 @@ function generate_project_summary_header()
 SUMMARY
 =======
 
-|No.|Title|RTCs|Code|Errors|Warnings|Licences|Executables|
-|---|-----|----|----|------|--------|--------|-----------|
+|No|Title|RTCs|LOC|COMs|ERRs|WARNs|Licences|EXEs|
+|--|-----|----|---|----|----|-----|--------|----|
 EOS
 
   return 0
@@ -218,7 +228,7 @@ EOS
 function generate_project_summary()
 {
   cat << EOS
-|[$1](#$1)|[`cat $1/title.txt`](`cat $1/url.txt`)|`cat $1/rtc.txt | wc -l`|`cat $1/stepcount_all.txt | tr '\n' '/' | sed -e "s/\//<br>/g"`|`cat $1/errors.txt | wc -l`|`cat $1/warnings.txt | wc -l`|`cat $1/licenses.txt | wc -l`|`cat $1/executables.txt | wc -l`|
+|[$1](#$1)|[`cat $1/title.txt`](`cat $1/url.txt`)|`cat $1/rtc.txt | wc -l`|`cat $1/stepcount_all.txt | tr '\n' '/' | sed -e "s/\//<br>/g"`|`cat $1/stepcount_comment_rate.txt`%|`cat $1/errors.txt | wc -l`|`cat $1/warnings.txt | wc -l`|`cat $1/licenses.txt | wc -l`|`cat $1/executables.txt | wc -l`|
 EOS
 
   return 0
@@ -248,24 +258,33 @@ RTCs
 
 Line of Code
 ------------
-`cat $1/stepcount_all.txt | sed 's/^/  - /'`
+
+### Total
+
+`cat $1/stepcount_all.txt | sed 's/^/- /'`
+
+### Comment Rate
+
+`cat $1/stepcount_comment_rate.txt` %
+
+### Detail
 
 `cat $1/stepcount_cloc.txt`
 
 Errors
 ------
 `cat $1/errors.txt | wc -l` errors  
-`cat $1/errors.txt | sed 's/^/  - /'`
+`cat $1/errors.txt | sed 's/^/- /'`
 
 Warnings
 --------
 `cat $1/warnings.txt | wc -l` warnings  
-`cat $1/warnings.txt | sed 's/^/  - /'`
+`cat $1/warnings.txt | sed 's/^/- /'`
 
 Licenses
 --------
 `cat $1/licenses.txt | wc -l` licenses  
-`cat $1/licenses.txt | sed 's/^/  - /'`
+`cat $1/licenses.txt | sed 's/^/- /'`
 
 Executables
 -----------
