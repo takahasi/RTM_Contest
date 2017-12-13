@@ -276,19 +276,25 @@ Errors
 ------
 `cat $1/errors.txt | wc -l` errors
 
+\`\`\`
 `cat $1/errors.txt | sed 's/^/* /'`
+\`\`\`
 
 Warnings
 --------
 `cat $1/warnings.txt | wc -l` warnings
 
+\`\`\`
 `cat $1/warnings.txt | sed 's/^/* /'`
+\`\`\`
 
 Licenses
 --------
 `cat $1/licenses.txt | wc -l` licenses
 
+\`\`\`
 `cat $1/licenses.txt | sed 's/^/* /'`
+\`\`\`
 
 Executables
 -----------
@@ -496,7 +502,7 @@ function get_project_09()
   local project_util=$project/util
 
   # get source code
-  git_clone https://github.com/rokihi/MobileRobotShootingGameRTC $project_src
+  _git_clone https://github.com/rokihi/MobileRobotShootingGameRTC $project_src
 
   # get documents
 
