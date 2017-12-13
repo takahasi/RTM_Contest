@@ -77,7 +77,7 @@ function get_project_title()
 function get_project_rtcs()
 {
   if [ -d $1 ]; then
-    find $1 \( -name "*.py" -o -name "*.cpp" -o -name "*.java" \) -print0 | xargs -0 grep -l -i "MyModuleInit(" | sed 's/.*\///' > $1/rtc.txt
+    find $1 \( -name "*.py" -o -name "*.cpp" -o -name "*.java" -o -name "*.cs" \) -print0 | xargs -0 grep -l -i "CreateComponent" | sed 's/.*\///' > $1/rtc.txt
   fi
 
   return $?
@@ -253,15 +253,16 @@ URL
 
 RTCs
 ----
-`cat $1/rtc.txt | wc -l` components  
-`cat $1/rtc.txt | sed 's/^/  - /'`
+`cat $1/rtc.txt | wc -l` components
+
+`cat $1/rtc.txt | sed 's/^/* /'`
 
 Line of Code
 ------------
 
 ### Total
 
-`cat $1/stepcount_all.txt | sed 's/^/- /'`
+`cat $1/stepcount_all.txt | sed 's/^/* /'`
 
 ### Comment Rate
 
@@ -273,30 +274,34 @@ Line of Code
 
 Errors
 ------
-`cat $1/errors.txt | wc -l` errors  
-`cat $1/errors.txt | sed 's/^/- /'`
+`cat $1/errors.txt | wc -l` errors
+
+`cat $1/errors.txt | sed 's/^/* /'`
 
 Warnings
 --------
-`cat $1/warnings.txt | wc -l` warnings  
-`cat $1/warnings.txt | sed 's/^/- /'`
+`cat $1/warnings.txt | wc -l` warnings
+
+`cat $1/warnings.txt | sed 's/^/* /'`
 
 Licenses
 --------
-`cat $1/licenses.txt | wc -l` licenses  
-`cat $1/licenses.txt | sed 's/^/- /'`
+`cat $1/licenses.txt | wc -l` licenses
+
+`cat $1/licenses.txt | sed 's/^/* /'`
 
 Executables
 -----------
-`cat $1/executables.txt | wc -l` executables  
-- win32  
-`cat $1/executables.txt | egrep -i "windows" | egrep -i "386" | sed 's/^/  - /'`  
-- win64  
-`cat $1/executables.txt | egrep -i "windows" | egrep -i "x86-64" | sed 's/^/  - /'`  
-- linux32  
-`cat $1/executables.txt | egrep -i "linux" | egrep -i "32-bit" | sed 's/^/  - /'`  
-- linux64  
-`cat $1/executables.txt | egrep -i "linux" | egrep -i "64-bit" | sed 's/^/  - /'`  
+`cat $1/executables.txt | wc -l` executables
+
+* win32
+`cat $1/executables.txt | egrep -i "windows" | egrep -i "386" | sed 's/^/  * /'`
+* win64
+`cat $1/executables.txt | egrep -i "windows" | egrep -i "x86-64" | sed 's/^/  * /'`
+* linux32
+`cat $1/executables.txt | egrep -i "linux" | egrep -i "32-bit" | sed 's/^/  * /'`
+* linux64
+`cat $1/executables.txt | egrep -i "linux" | egrep -i "64-bit" | sed 's/^/  * /'`
 
 [Back to summary](#summary)
 
@@ -397,10 +402,10 @@ function get_project_04()
   local project_util=$project/util
 
   # get source code
-  _git_clone https://github.com/rsdlab/AVSdeviceSDKWrapper $project_src
+  _git_clone https://github.com/rsdlab/AVSdeviceSDKWrapperRTC.git $project_src
 
   # get documents
-  _wget https://github.com/rsdlab/AVSdeviceSDKWrapper/blob/master/AVSdeviceSDKWrapper%20RTC.pdf $project_doc
+  _wget https://github.com/rsdlab/AVSdeviceSDKWrapperRTC/blob/master/AVSdeviceSDKWrapper%20RTC.pdf $project_doc
 
   # get utility tools
 
@@ -435,8 +440,6 @@ function get_project_06()
 
   # get source code
   _git_clone https://github.com/Nobu19800/OpenRTMPythonPlugin $project_src
-  wget https://drive.google.com/a/nobu777.net/uc?authuser=0&id=1EA9LEduA1mVAoPbyL4IFQ5k8L61TxQux&export=download -O $project_src/exe.zip
-  (cd $project_src && unzp exe.zip)
 
   # get documents
   _wget https://github.com/Nobu19800/OpenRTMPythonPlugin/wiki $project_doc
@@ -493,6 +496,7 @@ function get_project_09()
   local project_util=$project/util
 
   # get source code
+  git_clone https://github.com/rokihi/MobileRobotShootingGameRTC $project_src
 
   # get documents
 
