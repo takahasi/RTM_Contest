@@ -9,7 +9,7 @@ set -u
 ####################
 # readonly XXX="xxx"
 readonly num_of_entry=10
-readonly required_packages=(git wget sloccount cppcheck egrep pyflakes findbugs cloc)
+readonly required_packages=(git wget sloccount cppcheck egrep pyflakes flake8 findbugs cloc cpplint.py)
 
 ####################
 # GLOBAL VARIABLES #
@@ -50,11 +50,20 @@ function check_commands()
 {
   for p in "${required_packages[@]}"
   do
-    if [ ! type "${p}" > /dev/null 2>&1 ]; then
-      echo "please install ${p} !"
-      echo "---"
-      usage
-      exit 1
+    if [ "${p}" == "cpplint.py" ]; then
+      test "${p}" > /dev/null 2>&1
+    else
+      type "${p}" > /dev/null 2>&1
+    fi
+    if [ ! $? == 0 ]; then
+      echo "check ${p}: not exist"
+      if [ "${p}" == "cpplint.py" ]; then
+        wget https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py
+      else
+        sudo apt-get install ${p}
+      fi
+    else
+      echo "check ${p}: ok"
     fi
   done
 
@@ -165,14 +174,17 @@ function analyse_project()
     find $1/src \( -name "*.c" -o -name "*.cpp" \) -print | egrep -v "idl" > $1/filelist_cpp.txt
     if [ -s $1/filelist_cpp.txt ]; then
       cat $1/filelist_cpp.txt | sed 's/ /" "/g' | xargs cppcheck --enable=all 2> $1/cppcheck.txt
+      cat $1/filelist_cpp.txt | sed 's/ /" "/g' | xargs python cpplint.py 2> $1/cpplint.txt
     else
       touch $1/cppcheck.txt
+      touch $1/cpplint.txt
     fi
 
     # static analysis for Python
     find $1/src \( -name "*.py" \) -print0 > $1/filelist_python.txt
     if [ -s $1/filelist_python.txt ]; then
-      cat $1/filelist_python.txt | xargs -0 pyflakes > $1/pyflakes.txt
+      # cat $1/filelist_python.txt | xargs -0 pyflakes > $1/pyflakes.txt
+      cat $1/filelist_python.txt | xargs -0 flake8 > $1/pyflakes.txt
     else
       touch $1/pyflakes.txt
     fi
@@ -194,6 +206,7 @@ function analyse_project()
     # collects warnings
     {
       egrep -v "information|error" $1/cppcheck.txt
+      cat $1/cpplint.txt
       cat $1/pyflakes.txt | egrep -v -e '^\s*$'
       cat $1/findbugs.txt | egrep -v -e '^\s*$' | egrep -v "\(H\)"
     } > $1/warnings.txt
