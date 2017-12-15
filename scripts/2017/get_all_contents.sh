@@ -132,6 +132,15 @@ function count_source_code_comment_rate()
   echo "scale=2; $comment / $code * 100" | bc
 }
 
+function count_source_code_warning_rate()
+{
+  local code=`cloc --quiet --xml $1/src/ | sed -e '1d'| xmllint --xpath "//results/languages/total/@code" -| sed 's/[^"]*"\([^"]*\)"[^"]*/\1/g'`
+  local warning=`cat $1/warnings.txt | wc -l`
+
+  echo "scale=2; $warning / $code * 100" | bc
+}
+
+
 # search project executables
 function get_project_executables()
 {
@@ -159,6 +168,7 @@ function analyse_project()
   touch $1/stepcount_all.txt
   touch $1/stepcount_cloc.txt
   touch $1/stepcount_comment_rate.txt
+  touch $1/stepcount_warning_rate.txt
   touch $1/licenses.txt
   touch $1/executables.txt
 
@@ -213,6 +223,7 @@ function analyse_project()
 
     get_project_licenses $1 > $1/licenses.txt
     get_project_executables $1 > $1/executables.txt
+    count_source_code_warning_rate $1 > $1/stepcount_warning_rate.txt
   fi
 
   generate_project_summary $1 > $1/summary.txt
@@ -230,8 +241,8 @@ function generate_project_summary_header()
 SUMMARY
 =======
 
-|No|Title|RTCs|LOC|COMs|ERRs|WARNs|Licences|EXEs|
-|--|-----|----|---|----|----|-----|--------|----|
+|No|Title|RTCs|LOC|COM%|WARN%|ERRs|WARNs|Licences|EXEs|
+|--|-----|----|---|----|-----|----|-----|--------|----|
 EOS
 
   return 0
@@ -241,7 +252,7 @@ EOS
 function generate_project_summary()
 {
   cat << EOS
-|[$1](#$1)|[`cat $1/title.txt`](`cat $1/url.txt`)|`cat $1/rtc.txt | wc -l`|`cat $1/stepcount_all.txt | tr '\n' '/' | sed -e "s/\//<br>/g"`|`cat $1/stepcount_comment_rate.txt`%|`cat $1/errors.txt | wc -l`|`cat $1/warnings.txt | wc -l`|`cat $1/licenses.txt | wc -l`|`cat $1/executables.txt | wc -l`|
+|[$1](#$1)|[`cat $1/title.txt`](`cat $1/url.txt`)|`cat $1/rtc.txt | wc -l`|`cat $1/stepcount_all.txt | tr '\n' '/' | sed -e "s/\//<br>/g"`|`cat $1/stepcount_comment_rate.txt`%|`cat $1/stepcount_warning_rate.txt`%|`cat $1/errors.txt | wc -l`|`cat $1/warnings.txt | wc -l`|`cat $1/licenses.txt | wc -l`|`cat $1/executables.txt | wc -l`|
 EOS
 
   return 0
