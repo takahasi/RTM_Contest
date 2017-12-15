@@ -527,6 +527,7 @@ function get_project_09()
 
   # get source code
   _git_clone https://github.com/rokihi/MobileRobotShootingGameRTC $project_src
+  _git_clone https://github.com/rokihi/ARTKMarkerInfoToPose2D $project_src
 
   # get documents
 
